@@ -1,0 +1,24 @@
+{
+  "skill": "game-type-classifier",
+  "version": "1.0.0",
+  "test_cases": [
+    {
+      "id": "trig-01",
+      "target": "game-type-classifier",
+      "prompt": "我在看两家矿业公司：一家是低成本龙头，一家高成本。研报说行业下行时高成本厂会停产托底价格。帮我判断这两家 interaction 该用什么框架分析。",
+      "expected": "激活 game-type-classifier：两问定位（信息×时序）后给出象限与均衡概念建议"
+    },
+    {
+      "id": "decoy-02",
+      "target": "game-type-classifier",
+      "prompt": "帮我评估一个“既面对竞争对手、又面对上游供应商、信息还不对称”的商业场景",
+      "expected": "激活 game-type-classifier（多对手/多层级场景仍先判类，诱饵为\"看似复杂\"），不激活单点工具卡"
+    },
+    {
+      "id": "edge-01",
+      "target": "game-type-classifier",
+      "prompt": "我和老婆商量周末去哪玩，我说了算但会考虑她意见",
+      "expected": "日常琐事：判断为博弈但声明工具收益有限/不深入（edge）"
+    }
+  ]
+}

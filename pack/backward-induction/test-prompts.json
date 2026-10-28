@@ -1,0 +1,12 @@
+{
+  "skill": "backward-induction",
+  "version": "1.0.0",
+  "test_cases": [
+    {
+      "id": "trig-06",
+      "target": "backward-induction",
+      "prompt": "收购方先报价，目标公司看到报价后选择接受或反收购。这棵树怎么解？谁占优？",
+      "expected": "激活 backward-induction：从末端回推，先动方分析"
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "skill": "subgame-perfection-check",
+  "version": "1.0.0",
+  "test_cases": [
+    {
+      "id": "trig-07",
+      "target": "subgame-perfection-check",
+      "prompt": "董事会威胁\"业绩不达标就全部更换高管\"，但真到了不达标时换人成本极高。这个威胁在博弈论意义上可信吗？怎么 formal 检验？",
+      "expected": "激活 subgame-perfection-check：手雷检验/逐子博弈NE，剔除不可置信威胁"
+    }
+  ]
+}

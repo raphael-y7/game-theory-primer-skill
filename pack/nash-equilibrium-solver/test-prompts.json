@@ -1,0 +1,18 @@
+{
+  "skill": "nash-equilibrium-solver",
+  "version": "1.0.0",
+  "test_cases": [
+    {
+      "id": "trig-02",
+      "target": "nash-equilibrium-solver",
+      "prompt": "两家企业成本c=10、需求P=100-Q，同时定产量。各自产量是多少？",
+      "expected": "激活 nash-equilibrium-solver：反应函数联立得 q*=(a-c)/3=30"
+    },
+    {
+      "id": "edge-02",
+      "target": "nash-equilibrium-solver",
+      "prompt": "三家企业同时定产量，需求函数是线性的，但其中一家成本是私人信息",
+      "expected": "边界判断：完全信息NE不够→路由贝叶斯纳什（跨卡联动）"
+    }
+  ]
+}

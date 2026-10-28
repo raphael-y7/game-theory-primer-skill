@@ -1,0 +1,12 @@
+{
+  "skill": "pbe-verification",
+  "version": "1.0.0",
+  "test_cases": [
+    {
+      "id": "trig-05",
+      "target": "pbe-verification",
+      "prompt": "我构造了一个\"弱公司不回购、强公司回购、市场见回购即上调估值\"的剧本，但朋友说路径外推断是随便设的。怎么系统检验这个剧本自洽不自洽？",
+      "expected": "激活 pbe-verification：要求1-4逐条验证程序"
+    }
+  ]
+}

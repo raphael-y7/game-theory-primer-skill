@@ -1,0 +1,12 @@
+{
+  "skill": "signaling-equilibrium",
+  "version": "1.0.0",
+  "test_cases": [
+    {
+      "id": "trig-04",
+      "target": "signaling-equilibrium",
+      "prompt": "某公司账上现金充裕却宣布大额回购，另一家负债却宣布增发。回购是真信号吗？怎么判断",
+      "expected": "激活 signaling-equilibrium：分离/混同判定框架+模仿成本问题"
+    }
+  ]
+}

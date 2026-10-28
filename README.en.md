@@ -131,6 +131,23 @@ game-theory-primer-skill/
 ├── BOOK_OVERVIEW.md               ← whole-book comprehension (Adler four-step, stage 0 output)
 ├── verified.md                    ← triple-verification conclusions for the 19 canonical units
 ├── INDEX.md                       ← skill map: capability table + also_read dependencies + load order
+├── TEST_SUMMARY.md                ← stage 4 pressure-test summary: scope, structure checks, results, next steps
+├── CANGJIE_ADAPTATION.md          ← cangjie adaptation notes: text status, distillation goals, evidence rules, boundaries
+├── candidates/                    ← stage 1 candidate pool (14 files, 251 candidates in total)
+│   ├── frameworks.md              ← all framework candidates (56)
+│   ├── frameworks-part-a.md       ← framework candidates, shard A
+│   ├── frameworks-part-b.md       ← framework candidates, shard B
+│   ├── frameworks-part-c.md       ← framework candidates, shard C
+│   ├── principles.md              ← all principle candidates (85)
+│   ├── principles-part-a.md       ← principle candidates, shard A
+│   ├── principles-part-b.md       ← principle candidates, shard B
+│   ├── principles-part-c.md       ← principle candidates, shard C
+│   ├── cases.md                   ← case candidates (42)
+│   ├── counter-examples.md        ← counter-example candidates (26)
+│   ├── glossary.md                ← glossary candidates (42)
+│   ├── verified-frameworks.md     ← item-by-item verification: frameworks
+│   ├── verified-principles.md     ← item-by-item verification: principles (with formula corrections)
+│   └── verified-cases-ce-gloss.md ← item-by-item verification: cases / counter-examples / glossary
 ├── bundle/                        ← the canonical bundle before compilation (verified.yaml is the source of truth)
 │   ├── verified.yaml              ← metadata, criteria and destinations for the 19 cards
 │   ├── cards/                     ← 19 capability cards (R/I/A1/A2/E/B structure)
@@ -140,6 +157,7 @@ game-theory-primer-skill/
 ├── single/game-theory-primer-skill/            ← single-entry build
 │   ├── SKILL.md                   ← entry: triggers + routing table + loading rules
 │   ├── BUILD_MANIFEST.json        ← build manifest and file hashes
+│   ├── test-prompts.json          ← entry copy of the cases, byte-identical to evals/test-prompts.json
 │   └── references/
 │       ├── overview.md            ← whole-book overview
 │       ├── capability-index.md    ← full intent and keyword index
@@ -166,6 +184,7 @@ game-theory-primer-skill/
 │   │   └── SKILL.md
 │   └── signaling-equilibrium/
 │       └── SKILL.md
+├── (note) ← every skill directory also ships a test-prompts.json (trigger and boundary cases)
 └── evals/                          ← test and scoring material
     ├── test-prompts.json          ← 24 trigger / decoy / routing / boundary cases
     └── test-results.md            ← item-by-item scoring and rework log

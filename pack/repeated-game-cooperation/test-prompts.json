@@ -1,0 +1,12 @@
+{
+  "skill": "repeated-game-cooperation",
+  "version": "1.0.0",
+  "test_cases": [
+    {
+      "id": "trig-03",
+      "target": "repeated-game-cooperation",
+      "prompt": "两个寡头每期都在博弈，想维持高价默契。贴现因子多少以上默契才守得住？给我判断依据。",
+      "expected": "激活 repeated-game-cooperation：触发战略门槛计算（古诺情形δ≥9/17并解释参数）"
+    }
+  ]
+}

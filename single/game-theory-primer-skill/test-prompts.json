@@ -1,0 +1,30 @@
+{
+  "skill": "bundle.gibbons-game-theory",
+  "version": "1.0.0",
+  "test_cases": [
+    {"id": "trig-01", "target": "game-type-classifier", "prompt": "我在看两家矿业公司：一家是低成本龙头，一家高成本。研报说行业下行时高成本厂会停产托底价格。帮我判断这两家 interaction 该用什么框架分析。", "expected": "激活 game-type-classifier：两问定位（信息×时序）后给出象限与均衡概念建议"},
+    {"id": "trig-02", "target": "nash-equilibrium-solver", "prompt": "两家企业成本c=10、需求P=100-Q，同时定产量。各自产量是多少？", "expected": "激活 nash-equilibrium-solver：反应函数联立得 q*=(a-c)/3=30"},
+    {"id": "trig-03", "target": "repeated-game-cooperation", "prompt": "两个寡头每期都在博弈，想维持高价默契。贴现因子多少以上默契才守得住？给我判断依据。", "expected": "激活 repeated-game-cooperation：触发战略门槛计算（古诺情形δ≥9/17并解释参数）"},
+    {"id": "trig-04", "target": "signaling-equilibrium", "prompt": "某公司账上现金充裕却宣布大额回购，另一家负债却宣布增发。回购是真信号吗？怎么判断", "expected": "激活 signaling-equilibrium：分离/混同判定框架+模仿成本问题"},
+    {"id": "trig-05", "target": "pbe-verification", "prompt": "我构造了一个\"弱公司不回购、强公司回购、市场见回购即上调估值\"的剧本，但朋友说路径外推断是随便设的。怎么系统检验这个剧本自洽不自洽？", "expected": "激活 pbe-verification：要求1-4逐条验证程序"},
+    {"id": "trig-06", "target": "backward-induction", "prompt": "收购方先报价，目标公司看到报价后选择接受或反收购。这棵树怎么解？谁占优？", "expected": "激活 backward-induction：从末端回推，先动方分析"},
+    {"id": "trig-07", "target": "subgame-perfection-check", "prompt": "董事会威胁\"业绩不达标就全部更换高管\"，但真到了不达标时换人成本极高。这个威胁在博弈论意义上可信吗？怎么 formal 检验？", "expected": "激活 subgame-perfection-check：手雷检验/逐子博弈NE，剔除不可置信威胁"},
+    {"id": "decoy-01", "target": "NONE", "prompt": "帮我查一下格力电器2024年的分红金额", "expected": "信息查询，不激活任何博弈卡"},
+    {"id": "decoy-02", "target": "game-type-classifier", "prompt": "帮我评估一个“既面对竞争对手、又面对上游供应商、信息还不对称”的商业场景", "expected": "激活 game-type-classifier（多对手/多层级场景仍先判类，诱饵为\"看似复杂\"），不激活单点工具卡"},
+    {"id": "decoy-03", "target": "mixed-strategy-reinterp", "prompt": "这个游资的操作看起来毫无规律，龙虎榜上时买时卖，是不是随机的？", "expected": "激活 mixed-strategy-reinterp（路由）解读混合战略=对手不确定性"},
+    {"id": "router-01", "target": "bayesian-nash-solver", "prompt": "打新询价：其他机构对新股估值未知，报价时应该压到多少？给个可算的框架", "expected": "路由→ bayesian-nash-solver（拍卖出价折算 b(v)=(n-1)v/n 类）"},
+    {"id": "router-02", "target": "double-auction-linear-eq", "prompt": "大宗交易里买卖双方都藏底价、互相试探，为什么明明有共赢空间还经常谈崩？", "expected": "路由→ double-auction-linear-eq（交易门槛1/4与交易损失）"},
+    {"id": "router-03", "target": "signal-refinement-checklist", "prompt": "我这个信号博弈模型里混同均衡和分离均衡都成立，用哪个作为主情景？怎么筛？", "expected": "路由→ signal-refinement-checklist（要求5/6直观标准筛选）"},
+    {"id": "router-04", "target": "commitment-credibility", "prompt": "公司公告\"未来三年不减持\"，这种承诺怎么判断它事后会不会被兑现？", "expected": "路由→ commitment-credibility（承诺锁定机制+参数条件）"},
+    {"id": "router-05", "target": "reputation-mechanism", "prompt": "新基金经理头两年业绩特别保守，第三年开始激进——这种模式怎么用博弈论解释和预判？", "expected": "路由→ reputation-mechanism（KMRW伪装合作与末段效应）"},
+    {"id": "router-06", "target": "cheap-talk-info-transmission", "prompt": "管理层在路演上说了很多，但都是些不痛不痒的话。为什么有信息也不好好说？", "expected": "路由→ cheap-talk-info-transmission（空谈博弈，偏好分歧决定信息量）"},
+    {"id": "router-07", "target": "incentive-schemes", "prompt": "券商研究所的派点排名机制对分析师行为有什么影响？奖金差距该设多大？", "expected": "路由→ incentive-schemes（锦标赛奖金差公式）"},
+    {"id": "router-08", "target": "normal-form-modeling", "prompt": "我想把\"两家店打折大战\"这个场景正式化成一个博弈模型，第一步该做什么？", "expected": "路由→ normal-form-modeling（三要素建模；若指出时序则联动extensive-form）"},
+    {"id": "router-09", "target": "extensive-form-modeling", "prompt": "先把\"先增发再看市场反应再决定是否注入资产\"画成博弈树，信息集怎么标？", "expected": "路由→ extensive-form-modeling（五要素+信息集）"},
+    {"id": "router-10", "target": "iesda-procedure", "prompt": "这个3×3矩阵里有没有可以直接划掉的战略？帮我清理一下再求均衡", "expected": "路由→ iesda-procedure（重复剔除劣战略）"},
+    {"id": "router-11", "target": "mixed-strategy-reinterp", "prompt": "对手时而配合时而对抗，没有规律。博弈论里这种\"随机化\"到底意味着什么？", "expected": "路由→ mixed-strategy-reinterp"},
+    {"id": "router-12", "target": "revelation-principle", "prompt": "我想设计一个让参与方说实话的报价机制，理论上该怎么简化搜索？", "expected": "路由→ revelation-principle（直接机制+IC）"},
+    {"id": "edge-01", "target": "game-type-classifier", "prompt": "我和老婆商量周末去哪玩，我说了算但会考虑她意见", "expected": "日常琐事：判断为博弈但声明工具收益有限/不深入（edge）"},
+    {"id": "edge-02", "target": "nash-equilibrium-solver", "prompt": "三家企业同时定产量，需求函数是线性的，但其中一家成本是私人信息", "expected": "边界判断：完全信息NE不够→路由贝叶斯纳什（跨卡联动）"}
+  ]
+}

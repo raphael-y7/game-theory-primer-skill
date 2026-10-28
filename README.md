@@ -131,6 +131,23 @@ game-theory-primer-skill/
 ├── BOOK_OVERVIEW.md               ← 整书理解（Adler 四步拆解，阶段 0 产出）
 ├── verified.md                    ← 19 个规范单元的三重验证结论
 ├── INDEX.md                       ← skill 地图：能力总表 + also_read 依赖 + 加载顺序
+├── TEST_SUMMARY.md                ← 阶段 4 压力测试摘要：测试范围、结构检查、结果、后续动作
+├── CANGJIE_ADAPTATION.md          ← 仓颉适配说明：文本状态、蒸馏目标、证据规则、使用边界
+├── candidates/                    ← 阶段 1 候选池原文（14 个文件，共 251 条候选）
+│   ├── frameworks.md              ← 框架候选全量（56 条）
+│   ├── frameworks-part-a.md       ← 框架候选分片 A
+│   ├── frameworks-part-b.md       ← 框架候选分片 B
+│   ├── frameworks-part-c.md       ← 框架候选分片 C
+│   ├── principles.md              ← 原则候选全量（85 条）
+│   ├── principles-part-a.md       ← 原则候选分片 A
+│   ├── principles-part-b.md       ← 原则候选分片 B
+│   ├── principles-part-c.md       ← 原则候选分片 C
+│   ├── cases.md                   ← 案例候选（42 条）
+│   ├── counter-examples.md        ← 反例候选（26 条）
+│   ├── glossary.md                ← 术语候选（42 条）
+│   ├── verified-frameworks.md     ← 逐条核验：框架
+│   ├── verified-principles.md     ← 逐条核验：原则（含公式修正备注）
+│   └── verified-cases-ce-gloss.md ← 逐条核验：案例 / 反例 / 术语
 ├── bundle/                        ← 编译前的规范 Bundle（verified.yaml 是唯一事实源）
 │   ├── verified.yaml              ← 19 张能力卡的元数据、判据与去向
 │   ├── cards/                     ← 19 张能力卡（R/I/A1/A2/E/B 六段结构）
@@ -140,6 +157,7 @@ game-theory-primer-skill/
 ├── single/game-theory-primer-skill/            ← 单一入口模式
 │   ├── SKILL.md                   ← 入口：触发条件 + 路由表 + 加载规则
 │   ├── BUILD_MANIFEST.json        ← 编译清单与文件哈希
+│   ├── test-prompts.json          ← 入口用例副本，与 evals/test-prompts.json 逐字节相同
 │   └── references/
 │       ├── overview.md            ← 整书概览
 │       ├── capability-index.md    ← 完整意图与关键词索引
@@ -166,6 +184,7 @@ game-theory-primer-skill/
 │   │   └── SKILL.md
 │   └── signaling-equilibrium/
 │       └── SKILL.md
+├── （注）← 各 skill 目录均含 test-prompts.json（该能力的触发与边界用例）
 └── evals/                          ← 测试与评分材料
     ├── test-prompts.json          ← 24 条触发 / 诱饵 / 路由 / 边界用例
     └── test-results.md            ← 逐项评分与失败修复记录
