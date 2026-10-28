@@ -1,0 +1,562 @@
+schema_version: 1
+bundle_id: bundle.gibbons-game-theory
+book:
+  title: 博弈论基础（A Primer in Game Theory）
+  author: "[美]罗伯特·吉本斯（Robert Gibbons）著，高峰译、魏玉根校"
+  source_pack: EPUB（中国社会科学出版社1999年3月第1版，当代经济学教科书译丛）
+  baseline_tag: v1.0.0
+entry:
+  name: game-theory-primer-skill
+  description: "吉本斯《博弈论基础》单一入口：按信息（完全/不完全）×时序（静态/动态）判定博弈类型，匹配四个逐级强化的均衡概念（纳什均衡/子博弈精炼/贝叶斯纳什/精炼贝叶斯），并对长期关系可持续性、信号可信性、承诺可信度、激励结构等市场博弈问题给出可执行求解程序；蒸馏倾向=辅助股票投资分析。"
+  core_principles:
+    - 先判博弈类型（信息×时序两问）再选均衡概念，判错象限全套结论失效
+    - 均衡是互相最优反应的稳定点，是条件性剧本而非点预测；多重均衡时用再精炼收敛
+    - 动态博弈中只有可信的威胁与承诺起作用（子博弈精炼剔除不可置信行为）
+    - 长期关系中合作能否自我维持由贴现因子门槛决定（触发战略条件）
+    - 信号的可信性来自不同类型模仿成本的差异（单交叉），分离必扭曲
+    - 限完全/不完全信息静态与动态博弈的教科书模型框架，收益函数须可写出
+  out_of_scope:
+    - 行为博弈与实验经济学偏离（1992年成书未覆盖）
+    - 需要真实收益函数数据而只有定性描述的场景（建模前先问，不代拟收益）
+    - 均衡之外的动态调整过程（学习/演化/高频微观结构）
+  stop_conditions:
+    - 收益函数或类型分布无法合理给出且用户拒绝假设时，停止并说明缺失
+    - 判定出博弈类型后若用户场景与全部四类都不匹配，停止并声明本入口不适用
+    - 多重均衡经再精炼仍无法收敛时，输出条件性剧本清单而非强行点预测
+router_entry:
+  name: game-theory-primer-skill-router
+  description: "吉本斯《博弈论基础》来源路由入口：按任务（建模/求解/动态可信性/重复博弈/不完全信息/信号/声誉/激励/机制设计）把请求路由到19张能力卡；也承担查术语（GLOSSARY 42词条）与定位原书章节（合并转写稿）。"
+promotion_budget: 8
+capabilities:
+  - capability_id: cap.gibbons-game-theory.game-type-classifier
+    revision: 1
+    status: active
+    slug: game-type-classifier
+    title: 博弈类型判定与均衡概念选择
+    importance: critical
+    importance_rationale: task-01前置判定（覆盖审计13/13任务的入口）；DIGEST主流程第一环；19卡中12张以其结论为前置输入
+    one_liner: 用"收益是否共同知识×行动有无先后且可观察"两问定位2×2象限，为四类博弈配对四个逐级强化的均衡概念（NE/SPNE/BNE/PBE），强概念在简单博弈中退化为弱概念。
+    intents: [判定互动场景的博弈类型, 选择匹配的均衡概念, 校验分析所用均衡概念与场景是否错配]
+    keywords: [博弈类型, 均衡概念选择, 纳什均衡, 子博弈精炼, 贝叶斯纳什均衡, 精炼贝叶斯均衡, game type, equilibrium concept, incomplete information]
+    also_read: [cap.gibbons-game-theory.normal-form-modeling, cap.gibbons-game-theory.extensive-form-modeling, cap.gibbons-game-theory.bayesian-nash-solver, cap.gibbons-game-theory.signaling-equilibrium, cap.gibbons-game-theory.nash-equilibrium-solver]
+    card: cards/game-type-classifier.md
+    source_evidence:
+      - source_id: gibbons-primer-1999
+        version_id: epub-cass-1999
+        location: 前言；1.1.C/2.4.B/3.1.B/4.1定义节
+    frontmatter:
+      description: "拿到任何多方互动先判定博弈类型再选工具：两问（收益函数是否共同知识→信息完全/不完全；行动有无先后且后行者可观察→动态/静态）定位2×2象限，匹配NE/SPNE/BNE/PBE四概念。触发词：博弈类型、信息不完全、同时行动、谁先动、game type、incomplete information、simultaneous vs sequential、Nash/subgame-perfect/Bayesian。边界：信息判定以收益函数而非行动是否保密为准；判错象限全套结论失效。"
+      tags: [game-theory, equilibrium-concept-selection, classifier, task-01]
+    promotion:
+      destination: promoted
+      gate:
+        independent_intent: true
+        independent_contract: true
+        independent_run: true
+        independent_reuse: true
+        independent_eval: true
+      notes: 全书入口判定，五判据全过；压力测试含类型判定实测。
+  - capability_id: cap.gibbons-game-theory.normal-form-modeling
+    revision: 1
+    status: active
+    slug: normal-form-modeling
+    title: 标准式建模三要素
+    importance: high
+    importance_rationale: task-02建模程序——建模错误则后续求解全错；DIGEST承上（判类）启下（求解）的转换层
+    one_liner: 把语言描述的互动转成标准式G={S1,…,Sn;u1,…,un}：参与者/战略空间/收益三问四步，附双变量矩阵画法与T＞R＞P＞S困境判别。
+    intents: [把语言描述的互动写成标准式, 检查战略空间与收益函数的完备性, 判别囚徒困境式收益结构]
+    keywords: [标准式表述, 战略空间, 收益函数, 双变量矩阵, 囚徒困境, normal form, strategic form, payoff matrix]
+    also_read: [cap.gibbons-game-theory.nash-equilibrium-solver, cap.gibbons-game-theory.iesda-procedure, cap.gibbons-game-theory.game-type-classifier, cap.gibbons-game-theory.extensive-form-modeling]
+    card: cards/normal-form-modeling.md
+    source_evidence:
+      - source_id: gibbons-primer-1999
+        version_id: epub-cass-1999
+        location: 1.1.A；1.2.A/1.2.B建模示范
+    frontmatter:
+      description: "把新闻/研报中的互动描述规范化为可解博弈：识别参与者→列全部可行战略（连续变量写区间并论证不需截断）→定每个战略组合的收益→两人画双变量矩阵（行方收益在前）。触发词：标准式、战略空间、收益函数、支付矩阵、normal form、payoff。边界：\"同时\"＝选择时互不知情而非物理同时；动态问题应转扩展式；收益写不出先问不代拟。"
+      tags: [game-theory, modeling, normal-form, task-02]
+    promotion:
+      destination: router
+      gate:
+        independent_intent: true
+        independent_contract: true
+        independent_run: true
+        independent_reuse: true
+        independent_eval: false
+      notes: 作为路由卡保留——通常与求解器连用，独立复用频率低于四大求解器。
+  - capability_id: cap.gibbons-game-theory.iesda-procedure
+    revision: 1
+    status: active
+    slug: iesda-procedure
+    title: 重复剔除严格劣战略程序
+    importance: medium
+    importance_rationale: task-03基础求解工具之一——静态博弈预清理步骤，但预测力有限（原书自认两缺陷）故定级medium
+    one_liner: 按(DS)式逐轮剔除严格劣战略缩小博弈，附逐层"理性是共同知识"假设与"剔剩唯一即唯一NE、留存不必均衡"的边界。
+    intents: [剔除严格劣战略缩小博弈, 核查逐层理性共同知识假设, 判断IESDS预测力是否足够并升级求解]
+    keywords: [严格劣战略, 重复剔除, 共同知识, 占优可解, IESDS, strictly dominated, iterated elimination]
+    also_read: [cap.gibbons-game-theory.nash-equilibrium-solver, cap.gibbons-game-theory.game-type-classifier, cap.gibbons-game-theory.normal-form-modeling]
+    card: cards/iesda-procedure.md
+    source_evidence:
+      - source_id: gibbons-primer-1999
+        version_id: epub-cass-1999
+        location: 1.1.B；附录1.1.C命题A/B；1.2.A剔除示范
+    frontmatter:
+      description: "用\"理性者绝不选严格劣战略\"公理逐轮缩小博弈：对每方每战略核对(DS)式（对手每一战略组合下收益均更低，缺一不可，含混合层检验），剔除后重复，剔剩唯一组合即唯一NE。触发词：劣战略、占优、剔除、共同知识、strictly dominated、dominance solvable。边界：任意多轮要求理性是共同知识；预测经常不精确；留存≠会发生，剔不干净转纳什均衡求解。"
+      tags: [game-theory, solution-concept, dominance, task-03]
+    promotion:
+      destination: router
+      gate:
+        independent_intent: true
+        independent_contract: true
+        independent_run: true
+        independent_reuse: false
+        independent_eval: true
+      notes: 与NE求解器连用的预清理步骤，路由可达即可。
+  - capability_id: cap.gibbons-game-theory.nash-equilibrium-solver
+    revision: 1
+    status: active
+    slug: nash-equilibrium-solver
+    title: 纳什均衡求解程序（一阶条件法＋划线法＋混合无差异法）
+    importance: critical
+    importance_rationale: task-03基础算力、全书地基——古诺q*=(a-c)/3与猜硬币(1/2,1/2)是触发战略门槛δ≥9/17、BNE、SPNE等所有后续单元的输入基准
+    one_liner: 按博弈形态三路求解纳什均衡——连续型最优反应函数联立（古诺q*=(a-c)/3、贝特兰德p*=(a+c)/(2-b)）、离散型划线法、混合型无差异法（猜硬币1/2、性别战1/3与2/3），纳什定理兜底存在性。
+    intents: [求连续选择变量博弈的纳什均衡, 用划线法求两人有限博弈的纯战略NE, 用无差异法求混合战略均衡概率, 检验协议是否为纳什均衡]
+    keywords: [纳什均衡, 最优反应, 反应函数, 一阶条件, 古诺, 贝特兰德, 划线法, 混合战略, 纳什定理, Nash equilibrium, best response, mixed strategy]
+    also_read: [cap.gibbons-game-theory.game-type-classifier, cap.gibbons-game-theory.mixed-strategy-reinterp, cap.gibbons-game-theory.iesda-procedure, cap.gibbons-game-theory.normal-form-modeling, cap.gibbons-game-theory.repeated-game-cooperation]
+    card: cards/nash-equilibrium-solver.md
+    source_evidence:
+      - source_id: gibbons-primer-1999
+        version_id: epub-cass-1999
+        location: 1.1.C NE定义；1.2.A古诺；1.2.B贝特兰德；1.3.A/B混合与存在性
+    frontmatter:
+      description: "求解纳什均衡的三路程序卡：连续型一阶条件法（古诺q*=(a-c)/3、贝特兰德p*=(a+c)/(2-b)）、离散型划线法（囚徒困境）、混合战略无差异法（猜硬币q=1/2、性别战1/3与2/3），附纳什定理存在性兜底。Trigger：中\"谁也不愿单方面偏离/反应函数/无差异\"，英\"Nash equilibrium/best response/mixed strategy\"。边界：存在性定理对无限战略空间充分非必要、检验须在混合层执行、多均衡时选择未决、均衡可低效。"
+      tags: [game-theory, nash-equilibrium, cournot, bertrand, mixed-strategy, task-03, critical]
+    promotion:
+      destination: promoted
+      gate:
+        independent_intent: true
+        independent_contract: true
+        independent_run: true
+        independent_reuse: true
+        independent_eval: true
+      notes: 独立求解器，实测算例充分（压力测试已布置）。
+  - capability_id: cap.gibbons-game-theory.mixed-strategy-reinterp
+    revision: 1
+    status: active
+    slug: mixed-strategy-reinterp
+    title: 混合战略的正确解读：对手的不确定性与净化
+    importance: medium
+    importance_rationale: task-08解读卡——防止把均衡随机化误读为可预测；对市场对手行为解读（跟风盘/主力、竞拍）是高频误用点，但无独立计算负载故medium
+    one_liner: 混合战略纳什均衡的正确含义是"我对你行动的不确定性"而非对手掷骰子——豪尔绍尼净化将其正式化为对私人信息的不确定性，均衡概率由对手收益决定且随机化不可预测。
+    intents: [解读对手无规律行为是噪音还是均衡性质, 从混合均衡概率反推对手收益/信息结构, 校准己方策略消除可被利用的规律]
+    keywords: [混合战略, 不确定性, 净化, 豪尔绍尼, 无差异, 不可预测, mixed strategy, purification, Harsanyi, unpredictable]
+    also_read: [cap.gibbons-game-theory.nash-equilibrium-solver, cap.gibbons-game-theory.bayesian-nash-solver]
+    card: cards/mixed-strategy-reinterp.md
+    source_evidence:
+      - source_id: gibbons-primer-1999
+        version_id: epub-cass-1999
+        location: 1.3.A；3.2.A净化
+    frontmatter:
+      description: "解读混合战略均衡含义：混合战略=对手对你行动的不确定性（1.3.A），正式化为豪尔绍尼净化（3.2.A，性别战x→0收敛2/3）。Trigger：中\"随机化/不可预测/反常行为\"，英\"mixed strategy/purification/unpredictable\"。预测含义：均衡中随机化不可被利用、概率由对手收益结构决定。边界：混合≠掷骰子、检验须在混合层执行、净化依赖线性收益、未纳入行为偏离。"
+      tags: [game-theory, mixed-strategy, harsanyi-purification, task-08]
+    promotion:
+      destination: router
+      gate:
+        independent_intent: true
+        independent_contract: true
+        independent_run: true
+        independent_reuse: false
+        independent_eval: true
+      notes: 解读型卡，附属于NE求解器，路由可达。
+  - capability_id: cap.gibbons-game-theory.backward-induction
+    revision: 1
+    status: active
+    slug: backward-induction
+    title: 逆向归纳法：完全且完美信息动态博弈的回推求解
+    importance: high
+    importance_rationale: task-04中心工具（第2章中心问题=可信性）；并购、谈判、威慑类剧本的求解引擎；阶段0优先级第4位
+    one_liner: 从博弈树末端逐级回推选最优（每级要求唯一解），自动剔除不可置信威胁；仅适用完全且完美信息；三阶段序贯谈判s1*=1-δ(1-δs)、斯塔克尔贝里先动优势q1*=(a-c)/2、q2*=(a-c)/4。
+    intents: [求完全且完美信息动态博弈的逆向归纳解, 识别并剔除不可置信威胁, 判定先动优势是否成立及大小]
+    keywords: [逆向归纳, backward induction, 完全且完美信息, 不可置信威胁, 斯塔克尔贝里, 先动优势, 序贯谈判, 贴现因子]
+    also_read: [cap.gibbons-game-theory.extensive-form-modeling, cap.gibbons-game-theory.subgame-perfection-check, cap.gibbons-game-theory.commitment-credibility]
+    card: cards/backward-induction.md
+    source_evidence:
+      - source_id: gibbons-primer-1999
+        version_id: epub-cass-1999
+        location: 2.1.A；2.1.B斯塔克尔贝里；2.1.D三阶段序贯谈判
+    frontmatter:
+      description: "先后手可观察的多阶段互动，需判断威胁承诺是否可信或预测终局时使用：从博弈树末端逐级回推每步最优（每级唯一解），自动剔除不可置信威胁；三阶段序贯谈判（s1*=1-δ(1-δs)）与斯塔克尔贝里先动优势（q1*=(a-c)/2, q2*=(a-c)/4）为标准算例。Trigger：中\"谁先动/可信吗/讨价还价\"，英\"credible threat/who moves first/take-it-or-leave-it\"。边界：仅适用完全且完美信息（信息集全单节），不完美信息需子博弈精炼或PBE；先动优势依赖行动可观察；逆向归纳解可低效率；理性为共同知识是公理非实证。"
+      tags: [game-theory, dynamic-games, backward-induction, credibility, task-04]
+    promotion:
+      destination: promoted
+      gate:
+        independent_intent: true
+        independent_contract: true
+        independent_run: true
+        independent_reuse: true
+        independent_eval: true
+      notes: 独立求解器+压力测试实测通过路径。
+  - capability_id: cap.gibbons-game-theory.extensive-form-modeling
+    revision: 1
+    status: active
+    slug: extensive-form-modeling
+    title: 扩展式表述与博弈树建模：五要素、信息集与时序互动
+    importance: high
+    importance_rationale: task-02动态侧建模程序是一切动态求解的前置；信息集画法直接决定可用的均衡概念
+    one_liner: 用五要素（参与人/何时行动/行动空间/信息集/收益）把时序互动画成博弈树；信息集承载"知道什么"，完美信息⇔所有信息集单节。
+    intents: [把语言描述的时序性互动形式化为博弈树, 依据信息集结构选择后续解概念, 区分行动与完整应变计划（战略）]
+    keywords: [扩展式表述, extensive form, 博弈树, 信息集, information set, 完美信息, 决策节, 终点节]
+    also_read: [cap.gibbons-game-theory.backward-induction, cap.gibbons-game-theory.subgame-perfection-check, cap.gibbons-game-theory.pbe-verification, cap.gibbons-game-theory.game-type-classifier]
+    card: cards/extensive-form-modeling.md
+    source_evidence:
+      - source_id: gibbons-primer-1999
+        version_id: epub-cass-1999
+        location: 2.4.A（图2.4.1-2.4.4）
+    frontmatter:
+      description: "需把有先后手或知情差异的互动形式化为模型、争论焦点是\"他知道不知道\"时使用：五要素画树，信息集=同一虚线圈内节点承载\"知道什么\"，完美信息⇔信息集全单节。Trigger：中\"先后手/他知道什么/博弈树\"，英\"order of moves/who knows what when/game tree/information set\"。边界：信息集只承载\"知道什么\"不承载信念（路径外推断归PBE）；信息集画错则全部后续结论作废；收益写不出应停车。"
+      tags: [game-theory, extensive-form, modeling, information-set, task-02]
+    promotion:
+      destination: router
+      gate:
+        independent_intent: true
+        independent_contract: true
+        independent_run: true
+        independent_reuse: true
+        independent_eval: false
+      notes: 建模类，通常作为动态求解的前置步骤，路由可达。
+  - capability_id: cap.gibbons-game-theory.subgame-perfection-check
+    revision: 1
+    status: active
+    slug: subgame-perfection-check
+    title: 子博弈精炼纳什均衡判定与不可置信威胁排除
+    importance: critical
+    importance_rationale: task-04（第2章中心问题=可信性）；关税/挤提/锦标赛全部两阶段应用与task-09承诺分析的求解底座
+    one_liner: 按三条件列子博弈、逐子博弈检验NE并剔除不可置信威胁，两阶段博弈用"先解后段NE再替入前段"的逆向求解程序得SPNE。
+    intents: [判定纳什均衡/威胁是否子博弈精炼, 对两阶段动态博弈执行先解后段再替入程序, 把含同时行动环节的动态博弈正确路由到子博弈精炼]
+    keywords: [子博弈精炼, 不可置信威胁, 手雷检验, 银行挤提, 关税博弈, 锦标赛, subgame perfect, credible threat, bank run]
+    also_read: [cap.gibbons-game-theory.backward-induction, cap.gibbons-game-theory.commitment-credibility, cap.gibbons-game-theory.repeated-game-cooperation, cap.gibbons-game-theory.extensive-form-modeling, cap.gibbons-game-theory.incentive-schemes]
+    card: cards/subgame-perfection-check.md
+    source_evidence:
+      - source_id: gibbons-primer-1999
+        version_id: epub-cass-1999
+        location: 第2章引言；2.2.A理论；2.2.B银行挤提；2.2.C关税；2.2.D锦标赛；2.4.B定义
+    frontmatter:
+      description: "两阶段先决策后行动结构、需检验威胁在执行节点是否仍最优、博弈树含同时行动环节时使用：子博弈三条件→逐子博弈NE检验→剔除不可置信威胁（手雷检验），两阶段用\"先解第二阶段NE再替入第一阶段\"。Trigger：中\"威胁可信吗/两阶段/事后反悔\"，英\"two-stage game/credible threat/continuation equilibrium\"。边界：同时行动博弈无真子博弈退化为NE；精炼解决可信性不解决效率；多均衡只给条件剧本；含多节信息集的路径外信念须转PBE。"
+      tags: [game-theory, dynamic-game, spne, credibility, task-04]
+    promotion:
+      destination: promoted
+      gate:
+        independent_intent: true
+        independent_contract: true
+        independent_run: true
+        independent_reuse: true
+        independent_eval: true
+      notes: 关税/挤提实测算例齐备。
+  - capability_id: cap.gibbons-game-theory.commitment-credibility
+    revision: 1
+    status: active
+    slug: commitment-credibility
+    title: 承诺与威胁的可信性分析（先动优势与时间一致性）
+    importance: high
+    importance_rationale: task-09（评估承诺/规则可信度）——管理层/央行承诺类投资判断的教科书模板；巴罗-戈登与斯塔克尔贝里均为verified案例
+    one_liner: 对比无承诺基准解与承诺不可撤回解，检验先动优势的可观察性与锁定机制；时间一致性问题用触发战略门槛δ≥c/(2c+d²)定量化（通胀偏差πs=d(1−b)y*/c）。
+    intents: [评估一项宣布是否锁定行为且事后会被兑现, 判断规则vs相机抉择哪种可信并识别锁定机制, 计算支撑承诺的贴现因子门槛与参数敏感方向]
+    keywords: [承诺可信性, 时间一致性, 斯塔克尔贝里, 先动优势, 规则与相机抉择, 通胀偏差, commitment, time consistency, rule versus discretion]
+    also_read: [cap.gibbons-game-theory.subgame-perfection-check, cap.gibbons-game-theory.backward-induction, cap.gibbons-game-theory.signaling-equilibrium, cap.gibbons-game-theory.repeated-game-cooperation]
+    card: cards/commitment-credibility.md
+    source_evidence:
+      - source_id: gibbons-primer-1999
+        version_id: epub-cass-1999
+        location: 2.1.B；2.3.E（式2.3.8/2.3.9）
+    frontmatter:
+      description: "一方先宣布、需判断宣布是否锁定行为与事后兑现；规则与相机抉择之争；先手公告估值时使用：无承诺基准解 vs 不可撤回承诺解对比，货币政策时间一致性门槛δ≥c/(2c+d²)。Trigger：中\"承诺可信吗/规则还是随机应变/说到做到\"，英\"credible commitment/rule vs discretion/tie one's hands\"。边界：承诺可信度=参数条件，δ不足则宣布只是不可置信威胁；先动优势依赖可观察且不可撤回；不处理成本信号型类型分离（转信号模型）；δ与c、d外生难测只能方向判断。"
+      tags: [game-theory, commitment, time-consistency, credibility, task-09]
+    promotion:
+      destination: router
+      gate:
+        independent_intent: true
+        independent_contract: true
+        independent_run: true
+        independent_reuse: true
+        independent_eval: false
+      notes: SPNE专题化应用，路由可达；实测并入subgame-perfection-check用例。
+  - capability_id: cap.gibbons-game-theory.repeated-game-cooperation
+    revision: 1
+    status: active
+    slug: repeated-game-cooperation
+    title: 重复博弈合作可持续性判定（触发战略与贴现因子门槛）
+    importance: critical
+    importance_rationale: task-05优先级第2位（行业格局/竞争行为可持续性）；囚徒δ≥1/4、古诺δ≥9/17均为verified核心定量结论
+    one_liner: 用"合作现值≥背离收益+惩罚现值损失"算触发战略门槛（囚徒δ≥1/4、古诺δ≥9/17、通用式δ≥max(di−xi)/(di−ei)），无名氏定理说明可实现收益集合随δ扩大。
+    intents: [判断行业默契/共谋/长期互惠能否自我维持并算贴现因子门槛, 把现实参数映射为δ做合作可持续性三档判定, 核查惩罚强度与再谈判漏洞]
+    keywords: [触发战略, 无名氏定理, 贴现因子门槛, 古诺共谋, 现值与平均收益, trigger strategy, folk theorem, discount factor threshold, collusion, grim trigger]
+    also_read: [cap.gibbons-game-theory.subgame-perfection-check, cap.gibbons-game-theory.reputation-mechanism, cap.gibbons-game-theory.nash-equilibrium-solver]
+    card: cards/repeated-game-cooperation.md
+    source_evidence:
+      - source_id: gibbons-primer-1999
+        version_id: epub-cass-1999
+        location: 2.3.B（式2.3.1、弗里德曼1971、附录通用式）；2.3.C（式2.3.2、阿布勒战略）
+    frontmatter:
+      description: "长期重复关系（价格默契、供应商、平台商家、配额联盟）判断合作/背叛是否理性时使用：现值Σδ^(t-1)πt与平均收益概念+触发战略+门槛计算（囚徒4/(1−δ)≥5+δ/(1−δ)⇒δ≥1/4；古诺πm/2(1−δ)≥πd+δπc/(1−δ)⇒δ≥9/17；通用式δ≥max(di−xi)/(di−ei)）。Trigger：中\"长期合作/价格战/报复\"，英\"is collusion sustainable/shadow of the future/grim trigger\"。边界：证明合作可以是均衡而非必实现；非最严厉可信惩罚会高估门槛（阿布勒δ=1/2<9/17）；帕累托劣惩罚可被重新谈判瓦解；偏离须可观察；δ外生难测。"
+      tags: [game-theory, repeated-game, cooperation, folk-theorem, task-05]
+    promotion:
+      destination: promoted
+      gate:
+        independent_intent: true
+        independent_contract: true
+        independent_run: true
+        independent_reuse: true
+        independent_eval: true
+      notes: 定量门槛可独立实测（压力测试布置）。
+  - capability_id: cap.gibbons-game-theory.incentive-schemes
+    revision: 1
+    status: active
+    slug: incentive-schemes
+    title: 激励结构两类模板：锦标赛与效率工资
+    importance: medium
+    importance_rationale: task-13（激励结构设计/解读），映射研究员锦标赛与管理层薪酬；公式复用面窄于核心工具故medium
+    one_liner: 努力不可观测时按相对排名付薪（锦标赛：(wH−wL)∫f²dε=g′(e*)，最优奖金差=1/∫f²dε=2σ√π）或按高工资+解雇威胁付薪（效率工资：升水=(1−δ)e/[δ(1−p)]）。
+    intents: [用锦标赛公式设计/解读排名考核与相对业绩薪酬, 用不偷懒条件判断高薪+严淘汰均衡是否可持续, 解读管理层薪酬结构的激励含义与失效条件]
+    keywords: [锦标赛, 奖金差, 效率工资, 不偷懒条件, 工资升水, tournament, prize spread, efficiency wage, no-shirking]
+    also_read: [cap.gibbons-game-theory.subgame-perfection-check, cap.gibbons-game-theory.repeated-game-cooperation]
+    card: cards/incentive-schemes.md
+    source_evidence:
+      - source_id: gibbons-primer-1999
+        version_id: epub-cass-1999
+        location: 2.2.D工作竞赛；2.3.D效率工资
+    frontmatter:
+      description: "解读排名考核/相对业绩薪酬或高薪+解雇威胁的激励安排时使用：锦标赛（(wH−wL)∫f²dε=g′(e*)，最优奖金差1/∫f²dε，正态噪声∫f²=1/(2σ√π)）与效率工资（升水(1−δ)e/[δ(1−p)]随p减小上升、随δ增大减小）。中英trigger：排名考核/末位淘汰/奖金差距，tournament/prize spread/efficiency wage/no-shirking。边界：限重复关系中触发式威胁（一次性激励失效）；限风险中性且惩罚须有劳动力市场支撑；忽略破坏行为与角点均衡。"
+      tags: [incentives, tournament, efficiency-wage, moral-hazard, task-13]
+    promotion:
+      destination: router
+      gate:
+        independent_intent: true
+        independent_contract: true
+        independent_run: true
+        independent_reuse: false
+        independent_eval: true
+      notes: 两类模板并列，路由可达。
+  - capability_id: cap.gibbons-game-theory.bayesian-nash-solver
+    revision: 1
+    status: active
+    slug: bayesian-nash-solver
+    title: 贝叶斯博弈标准式与贝叶斯纳什均衡求解程序
+    importance: high
+    importance_rationale: task-06——打新/定增询价、竞标竞购、对手成本推断等"对手有私人信息"场景的核心求解器；auction出价折算可直接给出操作数字
+    one_liner: 把"谁知道什么"包装为类型空间与贝叶斯推断，战略=类型→行动的函数，逐类型一阶条件联立求解BNE（非对称古诺+一级密封拍卖双算例，n人出价b(v)=(n−1)v/n）。
+    intents: ["把私人信息场景写成G={A;T;p;u}并逐类型建立期望收益max问题", "用类型依赖FOC联立求BNE", "对竞价场景做出价折算与存在性/多重性前置检查"]
+    keywords: [贝叶斯纳什均衡, 类型空间, 一级密封拍卖, 出价折价, 猜线性法, Bayesian Nash equilibrium, type space, bid shading, first-price auction]
+    also_read: [cap.gibbons-game-theory.signaling-equilibrium, cap.gibbons-game-theory.mixed-strategy-reinterp, cap.gibbons-game-theory.pbe-verification, cap.gibbons-game-theory.double-auction-linear-eq, cap.gibbons-game-theory.game-type-classifier]
+    card: cards/bayesian-nash-solver.md
+    source_evidence:
+      - source_id: gibbons-primer-1999
+        version_id: epub-cass-1999
+        location: 3.1.A/B/C；3.2.B拍卖及附录
+    frontmatter:
+      description: "对手成本/估值未知、需要折价报价或期望利润最大化场景使用：四要素G={A;T;p;u}、战略=覆盖每类型的函数、BNE=逐类型无利可改；求解程序为各类型期望收益+FOC联立，A1含非对称成本古诺与一级密封拍卖（b(v)=v/2、n人(n−1)/n·v）。中英trigger：对手成本未知/折价报价，type space/bid shading/first-price auction。边界：无限战略空间不在一般存在性保证内；多重均衡退化点预测；线性均衡依赖均匀分布且限严格递增可微类；类型独立与共同先验假定。"
+      tags: [bayesian-games, auction, cournot, incomplete-information, task-06]
+    promotion:
+      destination: router
+      gate:
+        independent_intent: true
+        independent_contract: true
+        independent_run: true
+        independent_reuse: true
+        independent_eval: true
+      notes: 五判据可全过，但受7个promoted预算限制排为router首位；实测纳入拍卖出价用例。
+  - capability_id: cap.gibbons-game-theory.double-auction-linear-eq
+    revision: 1
+    status: active
+    slug: double-auction-linear-eq
+    title: 双向拍卖线性均衡与交易损失模板
+    importance: medium
+    importance_rationale: task-06双边私人信息交易——做市价差与大宗议价的结构性结论（交易不足、1/4门槛）价值高，但适用面限双边同时报价故medium
+    one_liner: 双边私人信息同时报价、中间价成交的双向拍卖线性均衡pb(vb)=2/3·vb+1/12、ps(vs)=2/3·vs+1/4，当且仅当vb−vs>1/4成交——交易区间小于有效区间即交易损失，且M-S证明无"有效率才成交"的机制。
+    intents: [推导或核对双边报价机制的线性均衡并算成交门槛, 用交易区间vs有效区间差额量化交易损失, 映射做市价差/大宗议价/并购谈判该成未成的结构性解释]
+    keywords: [双向拍卖, 线性均衡, 交易门槛, 迈尔森-萨特思韦特定理, 交易损失, double auction, Myerson-Satterthwaite, bid-ask spread]
+    also_read: [cap.gibbons-game-theory.bayesian-nash-solver, cap.gibbons-game-theory.revelation-principle]
+    card: cards/double-auction-linear-eq.md
+    source_evidence:
+      - source_id: gibbons-primer-1999
+        version_id: epub-cass-1999
+        location: 3.2.C（式3.2.3—3.2.8、图3.2.1/3.2.2/3.2.3）
+    frontmatter:
+      description: "买卖双方藏底价、报价留余地、明明划算却不成交场景使用：线性均衡pb=2/3vb+1/12、ps=2/3vs+1/4，成交⇔vb−vs>1/4；与单一价格均衡族对比；M-S定理（均匀分布下线性均衡期望获益最高、无有效率才成交的自愿机制）。中英trigger：买卖双方藏底价/中间价成交，bid-ask spread/bilateral trade/Myerson-Satterthwaite。边界：交易不足是结构性结论非机制缺陷；多重均衡；依赖均匀分布与拟线性效用；静态一次性框架。"
+      tags: [double-auction, bilateral-trade, market-making, task-06]
+    promotion:
+      destination: router
+      gate:
+        independent_intent: true
+        independent_contract: true
+        independent_run: true
+        independent_reuse: false
+        independent_eval: true
+      notes: 结构性结论卡，路由可达。
+  - capability_id: cap.gibbons-game-theory.revelation-principle
+    revision: 1
+    status: active
+    slug: revelation-principle
+    title: 显示原理与直接机制搜索压缩
+    importance: medium
+    importance_rationale: task-12（机制视角评估规则设计）属中级需求；是否定 性结论的推广杠杆，投资场景直接使用频率低于信号类工具
+    one_liner: 任何贝叶斯博弈的任何BNE都可重新表示为"报类型+实话实说"的激励相容直接机制，机制评估只需在IC类中搜索并配参与约束。
+    intents: [评估一条规则/制度下参与者会不会如实申报, 检验申报类机制的IC不等式与参与约束, 用显示原理把否定性结论推广到一切机制]
+    keywords: [显示原理, 直接机制, 激励相容, 参与约束, 机制设计, revelation principle, direct mechanism, incentive compatible]
+    also_read: [cap.gibbons-game-theory.bayesian-nash-solver, cap.gibbons-game-theory.double-auction-linear-eq]
+    card: cards/revelation-principle.md
+    source_evidence:
+      - source_id: gibbons-primer-1999
+        version_id: epub-cass-1999
+        location: 3.3显示原理
+    frontmatter:
+      description: "评估规则/机制（询价发行、招标、对赌条款）时问\"该规则下人们会如实申报吗\"、判断报价压价是否机制属性时使用：显示原理=任何BNE可表示为IC直接机制（报类型，均衡战略s_i*(t_i)复制进机制），搜索空间压缩到IC类+参与约束。英trigger：mechanism design/would they report truthfully/IC constraint。边界：只压缩搜索空间不改均衡结果集；依赖可写出的收益函数与共同先验；静态版限定；风险中性/估价独立假定。"
+      tags: [game-theory, mechanism-design, revelation-principle, task-12]
+    promotion:
+      destination: router
+      gate:
+        independent_intent: true
+        independent_contract: true
+        independent_run: true
+        independent_reuse: false
+        independent_eval: false
+      notes: 中级工具，路由可达。
+  - capability_id: cap.gibbons-game-theory.pbe-verification
+    revision: 1
+    status: active
+    slug: pbe-verification
+    title: 精炼贝叶斯均衡验证程序（要求1-4逐条）
+    importance: critical
+    importance_rationale: task-07核心前置程序；第4章全部应用（信号/空谈/谈判/声誉）都以战略+推断联合体为载体，验证程序是判定均衡成立与否的通用口径
+    one_liner: PBE=满足要求1-4的"战略+推断"联合体——每信息集有推断、给定推断序贯理性、路径上推断由贝叶斯法则×均衡战略决定、路径外推断在可能情况下与之一致。
+    intents: [验证候选"战略+市场推断"剧本是否自洽, 分析偏离/公告事件后推断应如何更新, 标注哪些结论依赖随意指定的路径外推断]
+    keywords: [精炼贝叶斯均衡, 序贯理性, 贝叶斯法则, 均衡路径, 路径外推断, PBE, sequentially rational, off-equilibrium path]
+    also_read: [cap.gibbons-game-theory.signaling-equilibrium, cap.gibbons-game-theory.signal-refinement-checklist, cap.gibbons-game-theory.extensive-form-modeling, cap.gibbons-game-theory.bayesian-nash-solver, cap.gibbons-game-theory.game-type-classifier]
+    card: cards/pbe-verification.md
+    source_evidence:
+      - source_id: gibbons-primer-1999
+        version_id: epub-cass-1999
+        location: 4.1（图4.1.1/4.1.4/4.1.5）
+    frontmatter:
+      description: "验证\"市场推断/信念与行为是否互证\"、分析偏离后市场会怎么想、剧本依赖什么信念时使用：要求1-4逐条（每信息集有推断、给定推断序贯理性、路径上贝叶斯更新、路径外可能情况下一致）。中英trigger：信念/偏离后市场怎么想，belief/Bayesian updating/on-off the equilibrium path/sequentially rational。边界：要求1-3不足以保证子博弈精炼；要求4\"可能情况下\"在复杂博弈含糊且对信号博弈无意义；推断是均衡组成部分而非外生数据。"
+      tags: [game-theory, pbe, belief-verification, task-07]
+    promotion:
+      destination: promoted
+      gate:
+        independent_intent: true
+        independent_contract: true
+        independent_run: true
+        independent_reuse: true
+        independent_eval: true
+      notes: 图4.1.4实测算例充分。
+  - capability_id: cap.gibbons-game-theory.signaling-equilibrium
+    revision: 1
+    status: active
+    slug: signaling-equilibrium
+    title: 信号博弈三类均衡判定与四应用（分离/混同/杂合）
+    importance: critical
+    importance_rationale: task-07主卡；信号模型直接落到公司金融与政策解读（Myers-Majluf资本结构、股利/回购信号），用户投资映射最高频单元
+    one_liner: 信号博弈按发送者战略分混同/分离/杂合三类PBE（信号要求1/2R/2S/3），分离的可行性由类型依存信号成本（单交叉）与低类型IC决定，分离必扭曲。
+    intents: [判定公告/行为是否构成可信分离信号, 求解两类型信号博弈四候选均衡并核IC与单交叉条件, 用Myers-Majluf逻辑解读股权融资与增发折价]
+    keywords: [信号博弈, 分离均衡, 混同均衡, 杂合均衡, 单交叉, 激励约束, signaling game, separating equilibrium, single-crossing]
+    also_read: [cap.gibbons-game-theory.pbe-verification, cap.gibbons-game-theory.signal-refinement-checklist, cap.gibbons-game-theory.bayesian-nash-solver, cap.gibbons-game-theory.commitment-credibility, cap.gibbons-game-theory.cheap-talk-info-transmission]
+    card: cards/signaling-equilibrium.md
+    source_evidence:
+      - source_id: gibbons-primer-1999
+        version_id: epub-cass-1999
+        location: 4.2.A/B/C/D（图4.2.2-4.2.9）
+    frontmatter:
+      description: "公告被解读为\"信号\"时问\"弱公司为什么不模仿、模仿成本是什么\"：混同/分离/杂合三类PBE判定（信号要求1/2R/2S/3），分离可行性=单交叉+低类型IC，斯彭斯教育信号、Myers-Majluf债务偏好（(4.2.14)按修正读法R−I(1+r)≥I(1+r)H/R−L）、维克斯货币政策。中英trigger：回购/增持/股利是真信号吗/模仿成本，signaling/separating vs pooling/mimicking cost。边界：路径外推断随意支撑多重均衡；混同融资无效率是均衡属性；分离信号必\"过度\"；单交叉不成立则分离不可能；线性产出/凸成本/风险中性限定。"
+      tags: [game-theory, signaling, capital-structure, task-07]
+    promotion:
+      destination: promoted
+      gate:
+        independent_intent: true
+        independent_contract: true
+        independent_run: true
+        independent_reuse: true
+        independent_eval: true
+      notes: 投资映射最高频；斯彭斯分离实测算例布置。
+  - capability_id: cap.gibbons-game-theory.signal-refinement-checklist
+    revision: 1
+    status: active
+    slug: signal-refinement-checklist
+    title: 均衡路径外推断的再精炼检查单（信号要求5/6与直观标准）
+    importance: high
+    importance_rationale: task-07收尾步骤，斯彭斯唯一存活均衡（最低成本分离e_s）由本卡产出，公告/回购/增发可信性分级的主情景来源
+    one_liner: 对每个候选混同/杂合均衡逐个执行"劣信号赋零概率（要求5）→均衡劣信号赋零概率与表白检验（要求6直观标准）"，剔除依赖不合情理路径外推断的均衡后汇总存活者。
+    intents: [判定混同/杂合信号均衡能否通过信号要求5/6检验, 在多重信号均衡清单中筛出条件性主情景, 对公告执行"哪类公司发它是均衡劣的"直观标准检验]
+    keywords: [信号要求5, 信号要求6, 直观标准, 劣信号, 均衡劣信号, 前向归纳, 再精炼, Intuitive Criterion, Cho-Kreps]
+    also_read: [cap.gibbons-game-theory.signaling-equilibrium, cap.gibbons-game-theory.pbe-verification, cap.gibbons-game-theory.cheap-talk-info-transmission]
+    card: cards/signal-refinement-checklist.md
+    source_evidence:
+      - source_id: gibbons-primer-1999
+        version_id: epub-cass-1999
+        location: 4.4再精炼（图4.4.1—4.4.7）
+    frontmatter:
+      description: "候选信号均衡多重需收敛、需检验路径外推断是否合理、需对公告表态做可信性分档时使用：信号要求5（劣信号→零概率）与要求6/直观标准（均衡劣信号→零概率，Cho-Kreps啤酒-热狗例），斯彭斯唯一存活=最低成本分离e_s。英trigger：multiple pooling equilibria/Intuitive-Criterion screening。边界：要求5条件过强故约束过弱；满足要求5仍可能明显不合理；均衡劣性依赖候选均衡本身；均衡选择无一般答案，再精炼只是部分回应。"
+      tags: [game-theory, signaling, refinement, pbe, off-path-beliefs]
+    promotion:
+      destination: router
+      gate:
+        independent_intent: true
+        independent_contract: true
+        independent_run: true
+        independent_reuse: true
+        independent_eval: true
+      notes: 与signaling-equilibrium连用的收尾步骤；啤酒-热狗实测纳入。
+  - capability_id: cap.gibbons-game-theory.reputation-mechanism
+    revision: 1
+    status: active
+    slug: reputation-mechanism
+    title: KMRW声誉机制（有限重复博弈中的伪装合作）
+    importance: medium
+    importance_rationale: task-10对应单元；新基金假装保守/末段变脸等投资映射实用但门槛条件为充分条件、长期结论为定性定理
+    one_liner: 行参与者以概率p只能选投桃报李、1−p为理性型；偏离即暴露使理性类型有动机伪装合作，(4.3.2)-(4.3.4)成立时有限重复囚徒困境存在合作至T−2期的均衡，且坦白上限与T无关。
+    intents: [判定长期关系中声誉型合作能否成为均衡, 定位对手处于伪装期还是末段并输出分期行为剧本, 区分声誉型合作与触发战略承诺型合作]
+    keywords: [KMRW声誉模型, 投桃报李, 伪装合作, 类型不确定性, 末段效应, tit-for-tat, end-game effect]
+    also_read: [cap.gibbons-game-theory.repeated-game-cooperation, cap.gibbons-game-theory.signaling-equilibrium]
+    card: cards/reputation-mechanism.md
+    source_evidence:
+      - source_id: gibbons-primer-1999
+        version_id: epub-cass-1999
+        location: 4.3.C（含附录4.3.C，图4.3.4—4.3.9）
+    frontmatter:
+      description: "评估有期限关系（专户、考核期、锁定期）内对方会否维持合作/稳健行为、对手异常合作需辨真伪、新管理人早期与末段行为连续性判断时使用：KMRW两类型模型，(4.3.2)p+(1−p)b≥0、(4.3.3)1+pa≥a、(4.3.4)a+b≤1，合作至T−2期、坦白上限与T无关。中英trigger：声誉/末段变脸/假装，KMRW reputation/last-period effect/mimicry。边界：单方类型不确定不足以产生合作（须双方对称）；完全信息定理与经验合作的冲突靠本卡修补而非否定；坦白上限无可算公式；书中\"声誉\"特指类型不了解非品牌声誉。"
+      tags: [game-theory, repeated-game, reputation, kmrw]
+    promotion:
+      destination: router
+      gate:
+        independent_intent: true
+        independent_contract: true
+        independent_run: true
+        independent_reuse: false
+        independent_eval: true
+      notes: 与repeated-game-cooperation互补，路由可达。
+  - capability_id: cap.gibbons-game-theory.cheap-talk-info-transmission
+    revision: 1
+    status: active
+    slug: cheap-talk-info-transmission
+    title: 空谈博弈的信息传递条件（Crawford-Sobel分段交流）
+    importance: medium
+    importance_rationale: task-11对应单元；路演/调研/公告表态的信息含量判断是投资高频动作，给出偏好分歧b→交流粒度n*(b)的折算程序，但结论限二次损失/均匀分布设定
+    one_liner: 无成本信号博弈中混同均衡恒存在，信息能否传递由偏好分歧b决定——分离需利益完全一致（x≥z且y≤w），连续版均衡等价于n段部分混同，n*(b)=[1+√(1+2/b)]/2取整、b≥1/4时只剩混同。
+    intents: [判定口头表态/指引是空谈还是有成本信号并估计信息含量上限, 用偏好分歧档位把管理层沟通折算成至多n段区间, 判定沟通失败源于利益结构而非诚信]
+    keywords: [空谈博弈, Crawford-Sobel, babbling均衡, 部分混同, 分段均衡, 偏好分歧, cheap talk, partial pooling, partition equilibrium]
+    also_read: [cap.gibbons-game-theory.signaling-equilibrium, cap.gibbons-game-theory.signal-refinement-checklist]
+    card: cards/cheap-talk-info-transmission.md
+    source_evidence:
+      - source_id: gibbons-primer-1999
+        version_id: epub-cass-1999
+        location: 4.3.A（图4.3.1/4.3.2）
+    frontmatter:
+      description: "判断管理层路演、调研纪要、监管表态的信息含量；判定表态按空谈还是按承诺成本信号处理时使用：混同恒存在、分离需利益完全一致（x≥z且y≤w）、两类型分离条件、连续版n段部分混同n*(b)=[1+√(1+2/b)]/2取整、b≥1/4只剩混同。中英trigger：空谈/路演说了什么/信息含量，cheap talk/costless communication/babbling。边界：偏好一致则分离自毁、b≥1/4则连有限交流都没有；三必要条件只是必要；分段结构限二次损失/均匀分布；路径外推断自由支撑多均衡。"
+      tags: [game-theory, cheap-talk, information-transmission, roadshow]
+    promotion:
+      destination: router
+      gate:
+        independent_intent: true
+        independent_contract: true
+        independent_run: true
+        independent_reuse: false
+        independent_eval: true
+      notes: 条件折算卡，路由可达。

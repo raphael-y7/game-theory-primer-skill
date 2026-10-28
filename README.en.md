@@ -2,29 +2,30 @@
 
 <p align="center"><a href="README.md">中文</a> | English</p>
 
-An AI skill pack for immediate use — it distills the game-modelling and equilibrium-solving methods from Robert Gibbons' *A Primer in Game Theory* into 19 capability cards that can be triggered individually or combined.
+An AI skill pack for immediate use — it distills the game modeling and equilibrium-solving methods from Robert Gibbons' *A Primer in Game Theory* into 19 capability cards that can be triggered individually or combined.
 
 It is not a book summary, nor a reading response — it breaks the reusable methodology in the book into skill modules that can be triggered, executed and tested.
 
 ## What these skills solve
 
-- You face a multi-party situation — a competitor cutting prices, management making promises, large holders against retail — and cannot say which class of game it is before jumping to conclusions; get the quadrant wrong and every downstream conclusion collapses
-- Whether an industry price understanding, an output-restriction pact or a supplier reciprocity arrangement will hold is pure gut feel; you cannot compute the discount-factor threshold, nor tell whether it breaks down because punishment is not credible or because the other side never intended to comply
-- You cannot separate credible threats, commitments and policy statements from cheap ones — "heads will roll if targets are missed", "no share sales for three years": will they still be optimal at the execution node?
-- Buybacks, increases in holdings, dividends and equity issues: you cannot tell a real signal from cheap talk, what it costs a weak firm to mimic, or why separating signals always look "excessive"
-- Block trades and market-making quotes collapse despite obvious room for mutual gain, and you cannot say whether that is a character problem or a structural loss under information rents
-- Roadshows, guidance and analyst calls say a lot but carry little information — is that a integrity problem or a necessary consequence of the preference structure?
+- You see a multi-party interaction and want to jump straight to a conclusion, but cannot say which of the four game classes it belongs to — pick the wrong quadrant and every equilibrium concept downstream is wrong
+- You can recite the definition of Nash equilibrium, but faced with "two firms set output simultaneously" or "how much should I bid at auction", you do not know what to write first
+- You treat threats, promises and public announcements as given facts, without realizing that a non-credible threat never takes effect in equilibrium
+- You judge whether industry tacit collusion, price alliances or long-term supplier relationships can hold, but can only say "it depends on whether people keep the rules" — no discount-factor threshold, no weakest player, no sensitivity direction
+- A buyback, an increase-in-holding or a share-issuance announcement sits in front of you, and you cannot tell a costly separating signal from costless cheap talk
+- When several equilibria coexist, you do not know which one to take as the main scenario, nor which off-path belief your conclusion depends on
 
 ## What was distilled
 
-19 capability cards, organized in the order "classify the game first, pick the tool by quadrant second, handle information and credibility last":
+19 capability cards, organized in the order "classify and model first, solve by quadrant second, return to credibility and mechanisms last":
 
-- **Classification and modelling foundations**: `game-type-classifier` (game type and equilibrium-concept selection), `normal-form-modeling` (the three elements of normal-form modelling), `extensive-form-modeling` (extensive form: five elements, information sets, sequential interaction)
-- **Complete information, static: solving and pruning**: `iesda-procedure` (iterated elimination of strictly dominated strategies), `nash-equilibrium-solver` (first-order conditions, the underline method, mixed-strategy indifference), `mixed-strategy-reinterp` (what mixed strategies really mean: opponent uncertainty and purification)
-- **Complete information, dynamic: credibility**: `backward-induction` (backward induction in games of complete and perfect information), `subgame-perfection-check` (subgame perfection and ruling out non-credible threats), `commitment-credibility` (commitment and threat credibility: first-mover advantage and time consistency)
-- **Repeated games and incentive structures**: `repeated-game-cooperation` (sustainability of cooperation: trigger strategies and discount-factor thresholds), `incentive-schemes` (two incentive templates: tournaments and efficiency wages)
-- **Incomplete information, static: types and mechanisms**: `bayesian-nash-solver` (Bayesian normal form and Bayesian Nash equilibrium), `double-auction-linear-eq` (linear equilibrium of the double auction and the loss from trade), `revelation-principle` (the revelation principle and compressing the mechanism search)
-- **Incomplete information, dynamic: signals and reputation**: `pbe-verification` (perfect Bayesian equilibrium, requirements 1–4 item by item), `signaling-equilibrium` (separating / pooling / hybrid equilibria and four applications), `signal-refinement-checklist` (signal requirements 5/6 and the intuitive criterion), `reputation-mechanism` (KMRW reputation: feigned cooperation in finitely repeated games), `cheap-talk-info-transmission` (when cheap talk carries information: Crawford-Sobel partition equilibria)
+- **Classification and modeling (3)**: `game-type-classifier` (game-type test and equilibrium-concept choice), `normal-form-modeling` (the three elements of normal form), `extensive-form-modeling` (extensive form and game-tree modeling)
+- **Complete-information static solving (3)**: `iesda-procedure` (iterated elimination of strictly dominated strategies), `nash-equilibrium-solver` (three solving routes: first-order conditions, cell-by-cell underlining, mixed-strategy indifference), `mixed-strategy-reinterp` (the correct reading of mixed strategies)
+- **Dynamic games and credibility (3)**: `backward-induction`, `subgame-perfection-check` (subgame perfection and eliminating non-credible threats), `commitment-credibility` (commitment, first-mover advantage and time consistency)
+- **Long-run relationships (2)**: `repeated-game-cooperation` (trigger strategies and the discount-factor threshold), `reputation-mechanism` (KMRW reputation and disguised cooperation)
+- **Incomplete-information static games and mechanism design (3)**: `bayesian-nash-solver` (Bayesian normal form and BNE solving), `double-auction-linear-eq` (linear equilibrium and trading loss), `revelation-principle` (the revelation principle and compressing the mechanism search)
+- **Incomplete-information dynamic games and signaling (4)**: `pbe-verification` (PBE requirements 1–4, item by item), `signaling-equilibrium` (separating / pooling / hybrid), `signal-refinement-checklist` (refining off-path beliefs), `cheap-talk-info-transmission` (when cheap talk carries information)
+- **Incentives (1)**: `incentive-schemes` (tournaments and efficiency wages)
 
 ## Two packaging modes: single and pack
 
@@ -39,13 +40,13 @@ The same 19 capability cards are compiled twice, at two granularities. The conte
 
 The 7 cards promoted to standalone skills in the pack:
 
-- `game-type-classifier` — game type and equilibrium-concept selection
+- `game-type-classifier` — game-type test and equilibrium-concept choice
 - `nash-equilibrium-solver` — Nash equilibrium solving procedure
-- `backward-induction` — backward induction and spotting non-credible threats
-- `subgame-perfection-check` — subgame perfection and ruling out non-credible threats
-- `repeated-game-cooperation` — sustainability of cooperation and discount-factor thresholds
-- `pbe-verification` — verifying requirements 1–4 of perfect Bayesian equilibrium
-- `signaling-equilibrium` — separating / pooling / hybrid equilibrium determination
+- `backward-induction` — backward induction
+- `subgame-perfection-check` — subgame perfection and non-credible threats
+- `repeated-game-cooperation` — sustainability of cooperation in repeated games
+- `pbe-verification` — perfect Bayesian equilibrium verification
+- `signaling-equilibrium` — the three equilibrium classes in signaling games
 
 ### Which one to install
 
@@ -54,7 +55,7 @@ Pick by the way you work, and **install only one**:
 | How you work | Recommended | Why |
 |---|---|---|
 | You use DSH / Codex / Claude Code with a skills directory and want a clean list | single | Takes 1 slot, loses no capabilities |
-| Your daily questions concentrate on "what game is this / how do I solve the equilibrium / is that threat credible / will the understanding hold / is this announcement a signal" | pack | Those are exactly the 7 promoted standalone skills, matched directly |
+| Your daily questions concentrate on "which game type / solve the equilibrium / backward induction / credibility / long-run cooperation / PBE / signaling" | pack | Those are exactly the promoted standalone skills, matched directly |
 | You distribute to several agents or teammates who pick what they need | pack | They can install only the standalone skills they want |
 | You want to install once and maintain one directory | single | Upgrades replace a single directory |
 
@@ -62,40 +63,39 @@ Pick by the way you work, and **install only one**:
 
 ## Examples
 
-### Example 1: how long can an industry price understanding last?
+### Example 1: how long can an industry's high-price tacit collusion hold?
 
 **User question**
 
-"These two oligopolists have held prices steady for years and nobody has cut first. How much longer can this understanding last?"
+"Two oligopolists play against each other every period and want to sustain a high price. Above what discount factor does the tacit deal hold? Give me the reasoning."
 
 **How the skill reasons**
 
-- `game-type-classifier`: pass the two questions first — are the payoff functions common knowledge (complete / incomplete), and do actions have an order that later movers can observe (static / dynamic)? Pricing simultaneously every period with repeated interaction lands in "complete-information repeated game", not a one-shot pricing game
-- `repeated-game-cooperation`: write out the stage game and the profit triple (collusive πm/2, deviation πd, stage Nash πc), then apply the trigger-strategy condition (πm/2)/(1−δ) ≥ πd + δπc/(1−δ). Under Cournot structure this solves to δ ≥ 9/17
-- The same card then checks punishment strength: 9/17 is only the threshold for "revert permanently to the stage Nash output". The book also shows Abreu's carrot-and-stick strategy sustaining the monopoly output at δ = 1/2
-- `subgame-perfection-check`: verify the punishment is still optimal at the execution node and would not be undone by renegotiation
+- First `game-type-classifier`: both firms know the payoff functions → complete information; each period's action is observed → dynamic. The quadrant is "complete information, dynamic", solved with subgame perfection; treating it as a one-shot static game would wrongly conclude that a price war is inevitable
+- Then `repeated-game-cooperation`: write the stage-game triple — collusive profit per firm `πm/2=(a−c)²/8`, best deviation `πd=9(a−c)²/64`, reversion to Cournot `πc=(a−c)²/9` — and apply the general threshold `δ≥max(di−xi)/(di−ei)`, which reduces to `δ≥9/17` in the Cournot case
+- Then check two boundaries from the card: punishment strength (reverting to Cournot forever is not the harshest credible punishment), and the renegotiation hole (punishment also punishes the punisher, so a threat that would be renegotiated away voids the threshold)
+- Finally output a three-tier verdict (sustainable / borderline / not sustainable) plus the weakest player and the sensitivity direction — never a point prediction
 
 **Sample answer**
 
-> Classify it first: this is a complete-information repeated game, not a one-shot pricing game. Using the Cournot triple from the book, the threshold for cooperation to be self-sustaining under a trigger strategy is δ ≥ 9/17 ≈ 0.53. But δ is an exogenous parameter in the book — it never tells you how to convert real-world patience into δ. Order frequency, cash reserves and reputation value can only serve as proxies; what value you assign is your call and must be written into the judgement, because there is no standard answer here. And 9/17 is not the only answer: with a harsher credible punishment (the carrot-and-stick strategy in the book), δ = 1/2 also sustains collusion. So "δ below 9/17 means a price war" is a wrong inference — check punishment strength before concluding the understanding cannot hold. Finally run the renegotiation test: if the punishment phase hurts both sides and can be renegotiated afterwards, the threat itself gets overturned. Give the conclusion in three tiers: δ clearly above the threshold with credible punishment → the understanding is sustainable; borderline → look at who has the strongest deviation incentive (the side with the largest πd − x is the weakest link); clearly below → short-sighted competition is the norm.
+> Start by writing the stage game: under collusion each firm earns `(a−c)²/8` per period, a unilateral deviation pays `9(a−c)²/64`, and after the relationship breaks each period is worth only the Cournot `(a−c)²/9`. Under a trigger strategy the threshold is **δ≥9/17≈0.53**. But that number is the threshold for one specific punishment — permanent reversion to Cournot — not an absolute lifeline for the industry: if you can execute a harsher and still credible punishment (a sharp short output cut after a deviation, with cooperation restored on compliance), the threshold drops clearly, and collusion can hold below 0.53. So the right move is not to ask "is δ high enough" but to estimate three parameters first — order rhythm (higher repetition frequency means higher δ), balance-sheet strength (who can survive the punishment phase; the weaker side has lower δ and defects first), and reputation value (the share of future profit flow). Whoever has the largest `πd−x` is the weakest link. Close with this: the model proves that cooperation *can be* an equilibrium, not that it *will* happen; a sufficient δ only means deviation does not pay — which equilibrium is played still depends on focal points and conventions.
 
-### Example 2: is a buyback a real signal, and is an equity issue bad news?
+### Example 2: is a buyback announcement a real signal or cheap talk?
 
 **User question**
 
-"One company with plenty of cash announced a large buyback; another with heavy debt announced an equity issue. Is the buyback a credible signal? Is the equity issue bad news?"
+"One company with plenty of cash announces a large buyback; another with debt announces a share issuance. Is the buyback a real signal? How do I judge?"
 
 **How the skill reasons**
 
-- `signaling-equilibrium`: build the five elements of the signaling game (sender / receiver / types and prior / signal set / action set and payoffs), then ask the key question — **what does it cost a weak firm to mimic this?** A cancellation buyback with a premium and a long lock-up costs real cash and burns future financial flexibility, so mimicking is expensive for a weak firm; a mere "buyback intention / increase plan" is close to cheap talk
-- Single-crossing check: the cost must be type-dependent (the low type pays more for the same signal), otherwise separation is impossible and only pooling or hybrid equilibria remain
-- Separation must distort: the separating signal level is pinned by the low type's no-mimicry constraint and therefore sits above the complete-information optimum — so a signal that looks "just right" is actually suspicious
-- The Myers-Majluf branch of `signaling-equilibrium`: equity is priced at average quality, so the high-profit type gives up a share that subsidises the low-profit type; good firms therefore avoid equity and turn to debt or internal funds
-- `signal-refinement-checklist`: signaling games usually have multiple equilibria; use signal requirements 5/6 and the intuitive criterion to eliminate candidates that rest on arbitrary off-path beliefs
+- First `game-type-classifier`: management knows its own earnings prospects while the market can only price after the announcement → incomplete information plus dynamic → perfect Bayesian equilibrium, so beliefs must enter the analysis
+- Then `signaling-equilibrium`: enumerate the four candidates (pooling on signal A, pooling on signal B, and the two separating patterns) and test each one — Bayes gives on-path beliefs, then the receiver's best response, then each type's deviation incentive, then off-path beliefs. The first question is not "what does the announcement say" but "what does it cost a weak firm to mimic this"
+- Check single crossing: separation requires that the low type's marginal cost of the same signal be higher; if it holds, the low type's incentive-compatibility constraint pins the separating level, and separation is always distorted — the signal must be "wasted" up to the point where the low type refuses to mimic
+- Then `signal-refinement-checklist`: pooling and hybrid equilibria often coexist, so requirements 5/6 (the intuitive criterion) strip out the ones resting on implausible off-path beliefs, and what survives becomes the conditional main scenario
 
 **Sample answer**
 
-> The order of judgement is not "buyback = good news" but "what does it cost a weak firm to mimic this buyback". If it is only a sentence of intent with no amount commitment and no lock-up, the mimicking cost is near zero, so in equilibrium it is a pooling signal and the market cannot separate types with it. The book gives no threshold for "how large a buyback becomes credible" — you have to define that magnitude yourself from the company's cash flow, financing capacity and lock-up terms, and state it; do not treat some percentage as if it came from the book. Note also that separation must distort: a signal that actually separates has to be "excessive", above the current optimum, to form a barrier the low type will not cross — so "the buyback is too large" cannot be read directly as irrationality. On the equity issue, the Myers-Majluf logic applies: equity is priced at average quality, the high-profit type gives up shares that subsidise the low-profit type, so good firms turn to debt or internal funds, and the negative reaction to an equity issue is an equilibrium property, not a market failure. Finally, one announcement often supports several equilibria — run the refinement checklist to remove versions that rely on arbitrary beliefs such as "the market must read a non-buyback as a bad firm", and what survives is the conditional main scenario.
+> Whether a buyback is a real signal does not depend on the wording — it depends on what it costs a weak firm to mimic. A cancellation buyback with a premium and a long lock-up is real money and it thins out future financial flexibility; a cash-strapped, financing-constrained firm copying that pays a lot, so separation is possible. By contrast, costless gestures such as a "buyback intention" or an "increase-in-holding plan" cost a weak firm nothing to copy, so the only equilibrium is pooling — it is indistinguishable from cheap talk and must not be read with the same logic. As for the issuance: under Myers-Majluf, equity financing forces high-profit types to hand over a larger stake and subsidize low-profit types, so well-performing firms avoiding equity in favor of debt or internal funds is an equilibrium implication; a negative announcement reaction and a deeper discount mean the market assigns a higher probability (q) that the issuer is the low type — an equilibrium property, not a market failure. One last warning: these models usually admit several equilibria at once, so any claim that "the market will read it as…" must first state which off-path belief it relies on.
 
 ## How these skills were generated
 
@@ -108,18 +108,18 @@ These skills were produced with the **[cangjie-skill](https://github.com/kangaro
 5. **Zettelkasten linking** — map dependencies, contrasts and combinations between cards, producing the capability index and routing table
 6. **Trigger and output testing** — write trigger blind tests (including decoy questions: fire when they should, stay silent when they should not) and output evaluation scenarios for every card; failing cards go back for rework and are re-verified afterwards
 
-The nature of this book also shapes the distillation: it is a 1992 graduate textbook with a very clear boundary — it covers only the four classes of complete / incomplete information × static / dynamic games, and it requires the payoff functions to be writable. Every card therefore states in its B section when it must not be used, and the A2 section of each card carries an investment-scenario mapping (added at compile time, not part of the original book).
+Because this 1992 textbook covers only the four classes of complete/incomplete information × static/dynamic games, that boundary is written into every card: behavioral game theory, experimental deviations and adjustment processes outside equilibrium are explicitly out of scope.
 
 ## Testing and verification
 
-This repository publishes the test material from the generation process alongside the skills: `evals/test-prompts.json` holds 24 trigger, decoy, routing and boundary cases, `evals/blindtest-A.md` and `evals/blindtest-B.md` are the two blind-test records, `evals/skill-list-for-blindtest.md` is the list that gives the blind tester only card names and descriptions, `evals/output-evals/` holds the 9 output-evaluation tasks, and `evals/test-results.md` is the item-by-item scoring log.
+This repository publishes the test material from the generation process alongside the skills: `evals/test-prompts.json` holds the trigger, decoy, routing and boundary cases, and `evals/test-results.md` is the item-by-item scoring report — including the uncovered gaps and a correction note, not just the passes.
 
-- **Trigger precision**: 7 promoted cards tested independently, 7 / 7 hit
-- **Decoy tests**: 3 / 3 passed (zero tolerance) — a pure data lookup triggers nothing, and a multi-opponent scenario is classified first instead of jumping to a single-point tool
-- **Routing reachability**: 12 router cards, 12 / 12 hit the target card
-- **Output evaluation**: 9 representative tasks (including boundary and missing-input scenarios) all passed; 1 of them was a task-design flaw corrected by the evaluator and recorded, not a formula error in a card
-- **Planned 24 + 9 = 33 cases, 33 completed.** A gap worth stating plainly: the 12 router cards were verified by "blind-test reachability + formula checking" rather than a full output-evaluation task each (a cost trade-off); all 7 promoted cards were fully evaluated
-- **Blind-test environment**: independent blind-test sub-agent in a clean context, host ZCode (GLM-5.3-Flash family), dated 2026-10-28; the material is published as-is, including the recorded gap
+- **Trigger blind tests**: 7 promoted cards, 7 / 7, run by a sub-agent in a clean context given only card names and descriptions
+- **Decoy tests**: zero tolerance, 3 / 3 — a pure data lookup activates no card, and a "looks complicated" multi-party scenario still goes to classification rather than to a single-point tool
+- **Routing reachability**: 12 router cards, 12 / 12, every case reached its target card
+- **Output evaluation**: 9 representative tasks (including boundary and missing-input cases), 9 / 9, with each formula checked mechanically; 1 case was a task-design issue, recorded as such and not counted as a card error
+- **Regression set**: the trigger, decoy and routing cases plus the 9 evaluated tasks all became the regression baseline in `evals/test-prompts.json`
+- **Not covered**: the 12 router cards were verified by blind-test reachability plus formula checks, not by a full evaluated task each
 
 ## Repository layout
 
@@ -129,21 +129,27 @@ game-theory-primer-skill/
 ├── README.en.md                   ← you are reading this
 ├── LICENSE                        ← MIT
 ├── BOOK_OVERVIEW.md               ← whole-book comprehension (Adler four-step, stage 0 output)
-├── verified.md                    ← triple-verification conclusions for the 19 units
+├── verified.md                    ← triple-verification conclusions for the 19 canonical units
+├── INDEX.md                       ← skill map: capability table + also_read dependencies + load order
+├── bundle/                        ← the canonical bundle before compilation (verified.yaml is the source of truth)
+│   ├── verified.yaml              ← metadata, criteria and destinations for the 19 cards
+│   ├── cards/                     ← 19 capability cards (R/I/A1/A2/E/B structure)
+│   └── book/
+│       ├── overview.md            ← whole-book overview
+│       └── glossary.md            ← glossary
 ├── single/                        ← single-entry build
-│   └── game-theory-primer-skill/
-│       ├── SKILL.md               ← entry: triggers + routing table + loading rules
-│       ├── BUILD_MANIFEST.json    ← build manifest and file hashes
-│       └── references/
-│           ├── overview.md        ← whole-book overview
-│           ├── capability-index.md  ← full intent and keyword index
-│           ├── cheatsheet.md      ← decision-rule quick reference
-│           ├── glossary.md        ← glossary
-│           └── capabilities/      ← 19 capability cards
+│   ├── SKILL.md                   ← entry: triggers + routing table + loading rules
+│   ├── BUILD_MANIFEST.json        ← build manifest and file hashes
+│   └── references/
+│       ├── overview.md            ← whole-book overview
+│       ├── capability-index.md    ← full intent and keyword index
+│       ├── cheatsheet.md          ← decision-rule quick reference
+│       ├── glossary.md            ← glossary
+│       └── capabilities/          ← 19 capability cards
 ├── pack/                          ← multi-entry build (compact pack)
 │   ├── BUILD_MANIFEST.json
 │   ├── capability-destinations.json
-│   ├── gibbons-game-theory-router/
+│   ├── game-theory-primer-skill-router/
 │   │   ├── SKILL.md               ← source router entry
 │   │   └── references/            ← 19 cards + indexes, called by the router
 │   ├── game-type-classifier/
@@ -160,22 +166,9 @@ game-theory-primer-skill/
 │   │   └── SKILL.md
 │   └── signaling-equilibrium/
 │       └── SKILL.md
-└── evals/                          ← trigger blind tests and output evaluation records
-    ├── test-results.md             ← item-by-item scoring and the stated gap
-    ├── test-prompts.json           ← 24 trigger / decoy / routing / boundary cases
-    ├── blindtest-A.md              ← group A blind test (triggers + decoys)
-    ├── blindtest-B.md              ← group B blind test (routing)
-    ├── skill-list-for-blindtest.md ← blind-test material: names and descriptions only
-    └── output-evals/
-        ├── C-cournot.md
-        ├── C-trigger-threshold.md
-        ├── C-bargaining.md
-        ├── D-spence.md
-        ├── D-beer-hotdog.md
-        ├── D-pbe.md
-        ├── E-classify.md
-        ├── E-double-auction.md
-        └── E-incentive.md
+└── evals/                          ← test and scoring material
+    ├── test-prompts.json          ← 24 trigger / decoy / routing / boundary cases
+    └── test-results.md            ← item-by-item scoring and rework log
 ```
 
 ## Usage
@@ -190,12 +183,12 @@ git clone https://github.com/raphael-y7/game-theory-primer-skill.git
 
 ```bash
 # macOS / Linux
-cp -r game-theory-primer-skill/single/game-theory-primer-skill ~/.agents/skills/
+cp -r game-theory-primer-skill/single ~/.agents/skills/game-theory-primer-skill
 ```
 
 ```powershell
 # Windows
-Copy-Item -Recurse .\game-theory-primer-skill\single\game-theory-primer-skill "$env:USERPROFILE\.agents\skills\"
+Copy-Item -Recurse .\game-theory-primer-skill\single "$env:USERPROFILE\.agents\skills\game-theory-primer-skill"
 ```
 
 ### Install pack
@@ -205,7 +198,7 @@ Copy only the directories that contain a `SKILL.md`; do not copy the two JSON fi
 ```bash
 # macOS / Linux
 cd game-theory-primer-skill/pack
-cp -r gibbons-game-theory-router \
+cp -r game-theory-primer-skill-router \
       game-type-classifier \
       nash-equilibrium-solver \
       backward-induction \
@@ -219,7 +212,7 @@ cp -r gibbons-game-theory-router \
 # Windows
 $pack = ".\game-theory-primer-skill\pack"
 $dest = "$env:USERPROFILE\.agents\skills"
-@('gibbons-game-theory-router','game-type-classifier','nash-equilibrium-solver','backward-induction','subgame-perfection-check','repeated-game-cooperation','pbe-verification','signaling-equilibrium') |
+@('game-theory-primer-skill-router','game-type-classifier','nash-equilibrium-solver','backward-induction','subgame-perfection-check','repeated-game-cooperation','pbe-verification','signaling-equilibrium') |
   ForEach-Object { Copy-Item -Recurse -LiteralPath (Join-Path $pack $_) -Destination $dest }
 ```
 
@@ -227,21 +220,19 @@ $dest = "$env:USERPROFILE\.agents\skills"
 
 ### How to verify the install
 
-Ask: "Will these two oligopolists' price understanding hold, and how do I compute the discount-factor threshold?" If the agent enters the repeated-game threshold flow (stage-game triple, δ threshold, punishment-strength check) instead of giving generic industry commentary, the install works. With the single build it reads the entry first and then routes to a card; with the pack build the matching capability is hit directly.
+Ask: "Two firms with cost c=10 and demand P=100−Q set output simultaneously — how much does each produce?" If the agent classifies the game first and then returns `q*=(a−c)/3=30` instead of a generic definition of Nash equilibrium, the install works. With the single build it reads the entry first and then routes to a card; with the pack build the matching capability is hit directly.
 
 ## Sources
 
 - *A Primer in Game Theory* by Robert Gibbons
-- Distilled from the whole book, producing 19 capability cards
 
 ## Notice
 
 This repository publishes distilled skills, indexes and rule quick references only. It contains no PDF, EPUB, OCR files, screenshots or full-book transcripts of the source book. Quotations that appear in the capability cards serve solely to attribute methodology and keep the material auditable.
 
-All numeric criteria in the book (the 9/17 discount-factor threshold, the 1/4 threshold in the prisoner's dilemma, bid shading in auctions, the tournament prize spread, the 1/4 trade band in the double auction, etc.) are model solutions under specific functional forms — change the linear-demand, uniform-distribution or risk-neutral assumptions and the numbers no longer carry over automatically, and the book offers no statistical backtesting. Recompute them for your own setting and declare the assumptions you use. Nothing in this repository is investment advice.
+All numeric criteria in the book (discount-factor thresholds, separating signal levels, auction bid coefficients, tournament prize spreads, etc.) are derivations from textbook worked examples without statistical backtesting; test them on your own setting and declare the convention you use. Nothing in this repository is investment advice.
 
 
 ## License
 
 [MIT](./LICENSE)
-

@@ -10,7 +10,7 @@
     {"id": "trig-06", "target": "backward-induction", "prompt": "收购方先报价，目标公司看到报价后选择接受或反收购。这棵树怎么解？谁占优？", "expected": "激活 backward-induction：从末端回推，先动方分析"},
     {"id": "trig-07", "target": "subgame-perfection-check", "prompt": "董事会威胁\"业绩不达标就全部更换高管\"，但真到了不达标时换人成本极高。这个威胁在博弈论意义上可信吗？怎么 formal 检验？", "expected": "激活 subgame-perfection-check：手雷检验/逐子博弈NE，剔除不可置信威胁"},
     {"id": "decoy-01", "target": "NONE", "prompt": "帮我查一下格力电器2024年的分红金额", "expected": "信息查询，不激活任何博弈卡"},
-    {"id": "decoy-02", "target": "game-type-classifier", "prompt": "帮我评估一个"既面对竞争对手、又面对上游供应商、信息还不对称"的商业场景", "expected": "激活 game-type-classifier（多对手/多层级场景仍先判类，诱饵为\"看似复杂\"），不激活单点工具卡"},
+    {"id": "decoy-02", "target": "game-type-classifier", "prompt": "帮我评估一个“既面对竞争对手、又面对上游供应商、信息还不对称”的商业场景", "expected": "激活 game-type-classifier（多对手/多层级场景仍先判类，诱饵为\"看似复杂\"），不激活单点工具卡"},
     {"id": "decoy-03", "target": "mixed-strategy-reinterp", "prompt": "这个游资的操作看起来毫无规律，龙虎榜上时买时卖，是不是随机的？", "expected": "激活 mixed-strategy-reinterp（路由）解读混合战略=对手不确定性"},
     {"id": "router-01", "target": "bayesian-nash-solver", "prompt": "打新询价：其他机构对新股估值未知，报价时应该压到多少？给个可算的框架", "expected": "路由→ bayesian-nash-solver（拍卖出价折算 b(v)=(n-1)v/n 类）"},
     {"id": "router-02", "target": "double-auction-linear-eq", "prompt": "大宗交易里买卖双方都藏底价、互相试探，为什么明明有共赢空间还经常谈崩？", "expected": "路由→ double-auction-linear-eq（交易门槛1/4与交易损失）"},

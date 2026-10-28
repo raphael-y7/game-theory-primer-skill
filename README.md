@@ -2,29 +2,30 @@
 
 <p align="center">中文 | <a href="README.en.md">English</a></p>
 
-一套可直接使用的 AI skill 工具包——把罗伯特·吉本斯《博弈论基础》（A Primer in Game Theory）里的博弈建模与均衡求解方法，蒸馏成 19 张可单独触发、也可组合调用的能力卡。
+一套可直接使用的 AI skill 工具包——把罗伯特·吉本斯《博弈论基础（A Primer in Game Theory）》里的博弈建模与均衡求解方法，蒸馏成 19 张可单独触发、也可组合调用的能力卡。
 
 它不是原书摘要，也不是读后感，而是把书中可复用的方法论拆成可触发、可执行、可测试的 skill 模块。
 
 ## 这套 skills 能解决什么问题
 
-- 面对"竞争对手降价、管理层承诺、大股东与散户"这类多方互动，先说不清它属于哪一类博弈，就直接套结论——判错象限，后面的分析全部作废
-- 一份行业自律价、限产默契、供应商互惠安排能不能守住，只能凭感觉；算不出贴现因子门槛，也分不清"守不住"是惩罚不可信，还是对方本来就没打算守
-- 分不清哪些威胁、承诺、政策表态是可信的——"业绩不达标就换高管""未来三年不减持"，到了执行节点还成立吗
-- 回购、增持、股利、增发这些公告，判断不了是真信号还是空谈：弱公司模仿它的成本到底是多少，为什么分离信号看起来总是"过度"
-- 大宗议价、做市报价明明有共赢空间却谈崩，说不清是人品问题还是信息租金保护下的结构性损失
-- 路演、业绩指引、调研沟通里"说了很多但没有信息"，是诚信问题，还是利益结构决定的必然结果
+- 看到多方互动就想直接给结论，却说不清它属于四类博弈的哪一类——判错象限，后面配的均衡概念整套失效
+- 会背纳什均衡的定义，但拿到"两家同时定产""竞拍该出多少价"这类具体场景，不知道第一步该写什么
+- 把"威胁""承诺""公开宣布"当成既定事实，没意识到不可置信的威胁在均衡里根本不会发生作用
+- 判断行业默契、价格同盟、长期供应关系能不能维持，只会说"看大家守不守规矩"，给不出贴现因子门槛、最脆弱方和参数敏感方向
+- 一条回购、增持、增发公告摆在面前，分不清它是真金白银的分离信号，还是零成本的空谈
+- 多重均衡摆在一起时，不知道该把哪个当主情景，也说不清自己的结论依赖了哪条路径外推断
 
 ## 蒸馏了什么
 
-19 张能力卡，按"先判类、再按 2×2 象限选工具、最后处理信息与可信性"的顺序组织：
+19 张能力卡，按"先判类建模、再按象限求解、最后回到可信性与机制"的顺序组织：
 
-- **判类与建模地基**：`game-type-classifier`（博弈类型判定与均衡概念选择）、`normal-form-modeling`（标准式建模三要素）、`extensive-form-modeling`（扩展式表述与博弈树建模：五要素、信息集与时序互动）
-- **完全信息静态：求解与清理**：`iesda-procedure`（重复剔除严格劣战略程序）、`nash-equilibrium-solver`（纳什均衡求解程序：一阶条件法＋划线法＋混合无差异法）、`mixed-strategy-reinterp`（混合战略的正确解读：对手的不确定性与净化）
-- **完全信息动态：可信性**：`backward-induction`（逆向归纳法：完全且完美信息动态博弈的回推求解）、`subgame-perfection-check`（子博弈精炼纳什均衡判定与不可置信威胁排除）、`commitment-credibility`（承诺与威胁的可信性分析：先动优势与时间一致性）
-- **重复博弈与激励结构**：`repeated-game-cooperation`（重复博弈合作可持续性判定：触发战略与贴现因子门槛）、`incentive-schemes`（激励结构两类模板：锦标赛与效率工资）
-- **不完全信息静态：类型与机制**：`bayesian-nash-solver`（贝叶斯博弈标准式与贝叶斯纳什均衡求解程序）、`double-auction-linear-eq`（双向拍卖线性均衡与交易损失模板）、`revelation-principle`（显示原理与直接机制搜索压缩）
-- **不完全信息动态：信号与声誉**：`pbe-verification`（精炼贝叶斯均衡验证程序：要求 1-4 逐条）、`signaling-equilibrium`（信号博弈三类均衡判定与四应用：分离 / 混同 / 杂合）、`signal-refinement-checklist`（均衡路径外推断的再精炼检查单：信号要求 5/6 与直观标准）、`reputation-mechanism`（KMRW 声誉机制：有限重复博弈中的伪装合作）、`cheap-talk-info-transmission`（空谈博弈的信息传递条件：Crawford-Sobel 分段交流）
+- **判类与建模（3）**：`game-type-classifier`（博弈类型判定与均衡概念选择）、`normal-form-modeling`（标准式建模三要素）、`extensive-form-modeling`（扩展式表述与博弈树建模）
+- **完全信息静态求解（3）**：`iesda-procedure`（重复剔除严格劣战略）、`nash-equilibrium-solver`（纳什均衡三路求解：一阶条件法＋划线法＋混合无差异法）、`mixed-strategy-reinterp`（混合战略的正确解读）
+- **动态博弈与可信性（3）**：`backward-induction`（逆向归纳法）、`subgame-perfection-check`（子博弈精炼判定与不可置信威胁排除）、`commitment-credibility`（承诺与威胁的可信性、先动优势与时间一致性）
+- **长期关系（2）**：`repeated-game-cooperation`（触发战略与贴现因子门槛）、`reputation-mechanism`（KMRW 声誉机制与伪装合作）
+- **不完全信息静态与机制设计（3）**：`bayesian-nash-solver`（贝叶斯博弈标准式与 BNE 求解）、`double-auction-linear-eq`（双向拍卖线性均衡与交易损失）、`revelation-principle`（显示原理与直接机制搜索压缩）
+- **不完全信息动态与信号（4）**：`pbe-verification`（精炼贝叶斯均衡要求 1–4 逐条验证）、`signaling-equilibrium`（信号博弈分离/混同/杂合判定）、`signal-refinement-checklist`（路径外推断的再精炼检查单）、`cheap-talk-info-transmission`（空谈博弈的信息传递条件）
+- **激励（1）**：`incentive-schemes`（锦标赛与效率工资两类模板）
 
 ## 两种打包模式：single 与 pack
 
@@ -34,18 +35,18 @@
 |---|---|---|
 | 可发现入口 | **1 个**：`game-theory-primer-skill` | **8 个**：1 个来源路由入口 + 7 个已晋级独立 skill |
 | 19 张能力卡放在哪 | 全部在入口的 `references/capabilities/` 里，由入口按路由表按需加载 1–2 张 | 7 张高频卡各自独立成 skill；其余 12 张仍在 router 的 `references/` 里 |
-| 触发方式 | 只有入口的 description 参与匹配，进入后靠路由表分流 | 7 张高频能力可被 description 直接命中，少一跳 |
+| 触发方式 | 只有入口的 description 参与匹配，进入后靠路由表分流 | 7 个高频能力可被 description 直接命中，少一跳 |
 | 升级维护 | 替换 1 个目录 | 替换 8 个目录 |
 
 pack 里被晋级为独立 skill 的 7 张卡：
 
 - `game-type-classifier` — 博弈类型判定与均衡概念选择
 - `nash-equilibrium-solver` — 纳什均衡求解程序
-- `backward-induction` — 逆向归纳与不可置信威胁识别
+- `backward-induction` — 逆向归纳法
 - `subgame-perfection-check` — 子博弈精炼判定与不可置信威胁排除
-- `repeated-game-cooperation` — 重复博弈合作可持续性与贴现因子门槛
-- `pbe-verification` — 精炼贝叶斯均衡要求 1-4 验证
-- `signaling-equilibrium` — 信号博弈分离 / 混同 / 杂合判定
+- `repeated-game-cooperation` — 重复博弈合作可持续性判定
+- `pbe-verification` — 精炼贝叶斯均衡验证程序
+- `signaling-equilibrium` — 信号博弈三类均衡判定
 
 ### 该装哪一种
 
@@ -54,7 +55,7 @@ pack 里被晋级为独立 skill 的 7 张卡：
 | 你的工作方式 | 推荐 | 原因 |
 |---|---|---|
 | 用 DSH / Codex / Claude Code 等有 skills 目录，希望列表干净 | single | 只占 1 个入口，能力一张不少 |
-| 日常问题高度集中在"这是什么博弈 / 均衡怎么解 / 威胁可信吗 / 默契守得住吗 / 这个公告是不是信号" | pack | 这 7 类正是被晋级的独立 skill，能直接命中 |
+| 日常问题高度集中在"判类 / 求均衡 / 逆向归纳 / 可信性 / 长期合作 / PBE / 信号" | pack | 这 7 类正是被晋级的独立 skill，能直接命中 |
 | 要分发给多个 agent 或团队，各自按需取用 | pack | 可以只装其中几个独立 skill，不必整包 |
 | 只想装一次、不想维护多个目录 | single | 升级时只替换 1 个目录 |
 
@@ -62,40 +63,39 @@ pack 里被晋级为独立 skill 的 7 张卡：
 
 ## 效果示例
 
-### 示例 1：行业价格默契还能撑多久
+### 示例 1：行业高价默契能撑多久
 
 **用户问题**
 
-"两家寡头这几年价格一直很稳，没人先降价。这种默契还能撑多久？"
+"两个寡头每期都在博弈，想维持高价默契。贴现因子多少以上默契才守得住？给我判断依据。"
 
 **skill 如何判断**
 
-- `game-type-classifier`：先过两问——收益函数是不是共同知识（完全 / 不完全），行动有没有先后且后行者可观察（静态 / 动态）。每期同时定价、反复打交道，落进"完全信息重复博弈"，不该按一次性价格博弈处理
-- `repeated-game-cooperation`：写出阶段博弈与利润三元组（合谋 πm/2、背离 πd、阶段纳什 πc），套触发战略条件 (πm/2)/(1−δ) ≥ πd + δπc/(1−δ)。古诺结构下解出 δ ≥ 9/17
-- 同一张卡接着查惩罚强度：9/17 只是"永久回到阶段纳什产量"这一种惩罚的门槛，书里同时给出阿布勒式胡萝卜加大棒在 δ = 1/2 就能支撑垄断产量
-- `subgame-perfection-check`：核对惩罚在执行节点是否仍最优、事后会不会被重新谈判推翻
+- 先过 `game-type-classifier`：收益函数双方都知道 → 信息完全；每期都能观测到上一期的行动 → 动态。象限是"完全信息动态"，用子博弈精炼；把它当成一次性静态博弈会直接得出"价格战不可避免"的错误结论
+- 进 `repeated-game-cooperation`：写出阶段博弈三元组——合谋每家 `πm/2=(a−c)²/8`、单方背离 `πd=9(a−c)²/64`、回到古诺 `πc=(a−c)²/9`，套通用门槛 `δ≥max(di−xi)/(di−ei)`，古诺情形化简为 `δ≥9/17`
+- 复核卡内两条边界：一是惩罚强度——"永久回到古诺"不是最严厉的可信惩罚；二是再谈判漏洞——惩罚同时惩罚惩罚者，事后会被推翻时门槛结论作废
+- 最后输出三档判定（可持续 / 临界 / 不可持续）＋最脆弱方＋参数敏感方向，不给点预测
 
 **最终回答示例**
 
-> 先定性：这是完全信息重复博弈，不是一次性的价格博弈。若按书里的古诺三元组，触发战略下合作能自我维持的门槛是 δ ≥ 9/17 ≈ 0.53。但书里的 δ 是外生参数，它没告诉你现实中的"耐心"怎么折算成 δ——接单节奏、现金储备、声誉价值只能当代理变量，取多少必须你自己定并写进判断，这一步没有标准答案。而且 9/17 不是唯一答案：换成更严厉的可信惩罚（书里的两面战略），δ = 1/2 也能撑住合谋，所以"δ 低于 9/17 就一定打价格战"是错误推论——下"默契守不住"之前必须先核惩罚强度。最后还要过再谈判检验：如果惩罚期对双方都更差、事后能重谈，这个威胁本身会被推翻。结论按三档给：δ 明显高于门槛且惩罚可信 → 默契可持续；临界 → 看谁最有偏离动机（πd − x 最大的那一方最脆弱）；明显低于门槛 → 短视竞争是常态。
+> 先把阶段博弈写清楚：合谋每家每期拿 `(a−c)²/8`，你单方背离能拿 `9(a−c)²/64`，撕破脸之后每期只剩古诺的 `(a−c)²/9`。套触发战略条件，门槛是 **δ≥9/17≈0.53**。但这个数只是"永久回到古诺"这一种惩罚下的门槛，不要当成行业的绝对生死线：如果你们能执行更严厉且可信的惩罚（背离后先短期剧烈减产、守罚就恢复合作），门槛会明显下降，δ 不到 0.53 也可能撑住垄断价。所以正确的动作不是问"δ 够不够"，而是先估三个参数——接单节奏（重复频率越高 δ 越大）、资本雄厚度（谁更能熬过惩罚期，弱势方 δ 低、最容易先动手）、声誉价值（未来利润流占比）。谁的 `πd−x` 最大，谁就是最脆弱的环节。最后一句必须带上：这套模型证明的是"合作可以是均衡"，不是"合作一定会实现"；δ 够了只说明背离不划算，具体落哪个均衡还得看焦点与惯例。
 
-### 示例 2：回购是真信号，增发是不是利空
+### 示例 2：回购公告是真信号还是空谈
 
 **用户问题**
 
-"一家公司账上现金充裕，宣布大额回购；另一家负债很高却宣布增发。回购算可信信号吗？增发是不是利空？"
+"某公司账上现金充裕却宣布大额回购，另一家负债却宣布增发。回购是真信号吗？怎么判断？"
 
 **skill 如何判断**
 
-- `signaling-equilibrium`：先建信号博弈五要素（发送者 / 接收者 / 类型与先验 / 信号集 / 行动集与双方收益），再问关键一问——**弱公司模仿它的成本是什么**。注销式回购＋溢价＋长期锁定是真金白银且摊薄未来财务弹性，弱公司模仿代价高；"回购意向 / 增持计划"这类无成本表态接近空谈
-- 单交叉检验：成本必须类型依存（低类型发同一信号的成本更高），否则分离不可能，只能考虑混同或杂合
-- 分离必扭曲：分离信号的水平由低类型的不模仿约束决定，必然高于完全信息下的最优——所以"恰到好处"的信号反而可疑
-- `signaling-equilibrium` 的 Myers-Majluf 分支：股权融资按平均质量定价，高利润类型出让份额等于补贴低利润类型，绩优公司因此回避股权、转向债务或内部资金
-- `signal-refinement-checklist`：信号博弈的均衡常常多重，用信号要求 5/6 与直观标准筛掉那些依赖随意路径外推断的候选
+- 先过 `game-type-classifier`：管理层知道自己的盈利前景、市场只能看公告后定价 → 不完全信息＋动态 → 精炼贝叶斯均衡，必须把"推断"这个要素引进来
+- 进 `signaling-equilibrium`：列四个候选（混同于信号 A、混同于信号 B、两种分离），逐个"贝叶斯定推断 → 求接收者最优反应 → 逐类型查偏离动机 → 补路径外推断"。判定的第一问不是"公告说了什么"，而是"弱公司模仿这个动作的成本是什么"
+- 核单交叉：分离的技术前提是低类型模仿同一信号的边际成本更高；成立的话分离水平由低类型 IC 钉死，且分离必扭曲——信号要"浪费"到低类型不愿模仿为止
+- 接 `signal-refinement-checklist`：混同/杂合常有多条并存，用信号要求 5/6（直观标准）剔除那些依赖不合情理路径外推断的，剩下的才是条件性主情景
 
 **最终回答示例**
 
-> 判断顺序不是"回购 = 利好"，而是先问弱公司模仿这笔回购的成本是多少。如果只是公告里一句回购意向、没有金额约束和锁定安排，模仿成本接近零，那它在均衡里只会是混同信号，市场无法据此区分类型。书里没有给"回购金额多大才算可信"的阈值——这个量级要你按公司的现金流、融资能力和回购的锁定条款自己定义并声明，别把某个百分比当成书上写的判据。还要注意分离必扭曲：能起区分作用的信号一定"过度"，超过当期最优规模才构成低类型不愿模仿的门槛，所以"回购规模太夸张"不能直接读作非理性。增发那边是 Myers-Majluf 的均衡推论：股权融资要按平均质量定价，高利润类型出让股份等于补贴低利润类型，于是绩优公司转向债务或内部资金，增发公告的负面反应是均衡属性，不是市场失灵。最后，同一份公告往往能支撑多组均衡，先跑再精炼检查单，把依赖"市场见到没回购就一定认为是坏公司"这类随意推断的版本剔掉，剩下的才是条件性主情景。
+> 回购是不是真信号，不看公告措辞，看弱公司模仿它的成本。注销式回购＋溢价＋长期锁定是真金白银，还摊薄了未来的财务弹性；现金流紧、融资难的公司照抄这一套代价很高，所以分离有可能成立。反过来，"回购意向""增持计划"这类零成本表态，弱公司抄一遍不花一分钱，均衡只能是混同——它和空谈没有区别，别按同一个逻辑解读。至于增发：按 Myers-Majluf 的逻辑，股权融资会逼着高利润类型出让更大份额去补贴低利润类型，所以绩优公司回避股权、转向债务或内部资金是均衡推论；增发公告的负反应、折价越深，说明市场推断发行方是低类型的概率越高（q 高），这是均衡属性，不是市场失灵。最后提醒一句：这类模型经常多条均衡并存，任何"市场会解读为……"的说法，都要先交代它依赖哪条路径外推断。
 
 ## 这些 skill 是怎么生成出来的
 
@@ -108,18 +108,18 @@ pack 里被晋级为独立 skill 的 7 张卡：
 5. **Zettelkasten 链接**——找出能力卡之间的依赖、对比、组合关系，生成能力索引与路由表
 6. **触发与输出测试**——为每张卡设计触发盲测题（含诱饵题：该触发时要触发，不该触发时要沉默）与输出评测场景，未通过的卡回炉重做，回炉后再做回归验证
 
-这本书的特点也影响蒸馏：它是 1992 年的研究生教科书，方法论边界很清楚——只处理完全 / 不完全信息 × 静态 / 动态四类博弈，且要求收益函数能写出来。所以每张卡的 B 段都写明了"什么时候不该用"，能力卡的 A2 段另附投资场景映射（编译时补充，不是原书内容）。
+这本 1992 年成书的教科书只覆盖完全/不完全信息 × 静态/动态这四类博弈，蒸馏时也把这条边界写进了每张卡：行为博弈、实验偏离、均衡之外的动态调整过程都明确划在范围之外。
 
 ## 测试与验证
 
-本仓库连生成过程的测试材料一起发布：`evals/test-prompts.json` 是 24 条触发、诱饵、路由与边界用例，`evals/blindtest-A.md`、`evals/blindtest-B.md` 是两组盲测记录，`evals/skill-list-for-blindtest.md` 是盲测时只给卡片名与描述的清单，`evals/output-evals/` 下是 9 个实测任务，`evals/test-results.md` 是逐项评分结果。
+本仓库把生成过程的测试材料一起发布：`evals/test-prompts.json` 是触发、诱饵、路由与边界用例，`evals/test-results.md` 是逐项评分报告——包含未覆盖项与纠错记录，不是只留通过记录。
 
-- **触发精度**：7 个晋级卡独立盲测，7 / 7 命中
-- **诱饵测试**：3 / 3 通过（容错为 0）——纯数据查询不激活任何卡，多对手场景先判类而不直接上单点工具
-- **路由可达性**：12 张 router 卡，12 / 12 命中目标卡
-- **输出实测**：9 个代表任务（含边界与缺输入场景）全部通过；其中 1 处是任务设计问题被实测员纠正并记录，不是卡内公式错误
-- **计划 24 + 9 = 33 条，完成 33 条**。需要如实说明的缺口：12 张 router 卡以"盲测可达 + 公式核对"为准，没有逐一做完整实测任务（成本考量）；7 张晋级卡全部做了实测
-- **盲测环境**：独立盲测 sub-agent 干净上下文，宿主 ZCode（GLM-5.3-Flash 系），日期 2026-10-28；材料原样发布，包含记录在案的缺口
+- **触发盲测**：7 个 promoted 卡独立盲测 7 / 7，sub-agent 干净上下文、只给卡名与描述
+- **诱饵测试**：容错为 0，3 / 3——纯数据查询不激活任何卡，"看似复杂"的多方场景仍先判类而不直接上单点工具
+- **路由可达**：12 个 router 卡 12 / 12，全部命中目标卡
+- **输出实测**：9 个代表任务（含边界与缺输入场景）9 / 9，公式逐项机械核对；其中 1 处为任务设计问题，已在报告中标注，不计为卡内错误
+- **回归集**：触发、诱饵、路由用例与 9 个实测任务全部并入 `evals/test-prompts.json` 作为回归基线
+- **未覆盖**：12 张 router 卡以盲测可达＋公式核对为准，未逐一做完整实测任务
 
 ## 仓库结构
 
@@ -129,21 +129,27 @@ game-theory-primer-skill/
 ├── README.en.md                   ← English version
 ├── LICENSE                        ← MIT
 ├── BOOK_OVERVIEW.md               ← 整书理解（Adler 四步拆解，阶段 0 产出）
-├── verified.md                    ← 19 个能力单元的三重验证结论
+├── verified.md                    ← 19 个规范单元的三重验证结论
+├── INDEX.md                       ← skill 地图：能力总表 + also_read 依赖 + 加载顺序
+├── bundle/                        ← 编译前的规范 Bundle（verified.yaml 是唯一事实源）
+│   ├── verified.yaml              ← 19 张能力卡的元数据、判据与去向
+│   ├── cards/                     ← 19 张能力卡（R/I/A1/A2/E/B 六段结构）
+│   └── book/
+│       ├── overview.md            ← 整书概览
+│       └── glossary.md            ← 术语表
 ├── single/                        ← 单一入口模式
-│   └── game-theory-primer-skill/
-│       ├── SKILL.md               ← 入口：触发条件 + 路由表 + 加载规则
-│       ├── BUILD_MANIFEST.json    ← 编译清单与文件哈希
-│       └── references/
-│           ├── overview.md        ← 整书概览
-│           ├── capability-index.md  ← 完整意图与关键词索引
-│           ├── cheatsheet.md      ← 决策规则速查
-│           ├── glossary.md        ← 术语表
-│           └── capabilities/      ← 19 张能力卡
+│   ├── SKILL.md                   ← 入口：触发条件 + 路由表 + 加载规则
+│   ├── BUILD_MANIFEST.json        ← 编译清单与文件哈希
+│   └── references/
+│       ├── overview.md            ← 整书概览
+│       ├── capability-index.md    ← 完整意图与关键词索引
+│       ├── cheatsheet.md          ← 决策规则速查
+│       ├── glossary.md            ← 术语表
+│       └── capabilities/          ← 19 张能力卡
 ├── pack/                          ← 多入口模式（compact pack）
 │   ├── BUILD_MANIFEST.json
 │   ├── capability-destinations.json
-│   ├── gibbons-game-theory-router/
+│   ├── game-theory-primer-skill-router/
 │   │   ├── SKILL.md               ← 来源路由入口
 │   │   └── references/            ← 19 张卡 + 索引，供 router 内部调用
 │   ├── game-type-classifier/
@@ -160,22 +166,9 @@ game-theory-primer-skill/
 │   │   └── SKILL.md
 │   └── signaling-equilibrium/
 │       └── SKILL.md
-└── evals/                          ← 触发盲测与输出实测记录
-    ├── test-results.md             ← 逐项评分与缺口说明
-    ├── test-prompts.json           ← 24 条触发 / 诱饵 / 路由 / 边界用例
-    ├── blindtest-A.md              ← A 组盲测（触发 + 诱饵）
-    ├── blindtest-B.md              ← B 组盲测（路由）
-    ├── skill-list-for-blindtest.md ← 盲测材料：仅卡名与描述
-    └── output-evals/
-        ├── C-cournot.md
-        ├── C-trigger-threshold.md
-        ├── C-bargaining.md
-        ├── D-spence.md
-        ├── D-beer-hotdog.md
-        ├── D-pbe.md
-        ├── E-classify.md
-        ├── E-double-auction.md
-        └── E-incentive.md
+└── evals/                          ← 测试与评分材料
+    ├── test-prompts.json          ← 24 条触发 / 诱饵 / 路由 / 边界用例
+    └── test-results.md            ← 逐项评分与失败修复记录
 ```
 
 ## 如何使用
@@ -190,12 +183,12 @@ git clone https://github.com/raphael-y7/game-theory-primer-skill.git
 
 ```bash
 # macOS / Linux
-cp -r game-theory-primer-skill/single/game-theory-primer-skill ~/.agents/skills/
+cp -r game-theory-primer-skill/single ~/.agents/skills/game-theory-primer-skill
 ```
 
 ```powershell
 # Windows
-Copy-Item -Recurse .\game-theory-primer-skill\single\game-theory-primer-skill "$env:USERPROFILE\.agents\skills\"
+Copy-Item -Recurse .\game-theory-primer-skill\single "$env:USERPROFILE\.agents\skills\game-theory-primer-skill"
 ```
 
 ### 装 pack
@@ -205,7 +198,7 @@ Copy-Item -Recurse .\game-theory-primer-skill\single\game-theory-primer-skill "$
 ```bash
 # macOS / Linux
 cd game-theory-primer-skill/pack
-cp -r gibbons-game-theory-router \
+cp -r game-theory-primer-skill-router \
       game-type-classifier \
       nash-equilibrium-solver \
       backward-induction \
@@ -219,7 +212,7 @@ cp -r gibbons-game-theory-router \
 # Windows
 $pack = ".\game-theory-primer-skill\pack"
 $dest = "$env:USERPROFILE\.agents\skills"
-@('gibbons-game-theory-router','game-type-classifier','nash-equilibrium-solver','backward-induction','subgame-perfection-check','repeated-game-cooperation','pbe-verification','signaling-equilibrium') |
+@('game-theory-primer-skill-router','game-type-classifier','nash-equilibrium-solver','backward-induction','subgame-perfection-check','repeated-game-cooperation','pbe-verification','signaling-equilibrium') |
   ForEach-Object { Copy-Item -Recurse -LiteralPath (Join-Path $pack $_) -Destination $dest }
 ```
 
@@ -227,21 +220,19 @@ $dest = "$env:USERPROFILE\.agents\skills"
 
 ### 怎么确认装好了
 
-装完问一句"两家寡头的价格默契守不守得住，贴现因子门槛怎么算"，看 agent 是否直接进入重复博弈的门槛计算流程（阶段博弈三元组、δ 门槛、惩罚强度核对），而不是给你一段泛泛的行业竞争分析。装的是 single 时，它会先读入口再按路由表进能力卡；装的是 pack 时，对应能力会被直接命中。
+装完问一句"两家企业成本 c=10、需求 P=100−Q，同时定产量，各自产多少"，看 agent 是否先判类再给 `q*=(a−c)/3=30`，而不是给你一段泛泛的纳什均衡定义。装的是 single 时，它会先读入口再按路由表进能力卡；装的是 pack 时，对应能力会被直接命中。
 
 ## 来源
 
-- 《博弈论基础》罗伯特·吉本斯 著
-- 全书蒸馏，共产出 19 张能力卡
+《博弈论基础》（A Primer in Game Theory）罗伯特·吉本斯 著
 
 ## 声明
 
 本仓库只发布蒸馏后的 skill、索引与规则速查材料，不包含原书 PDF、EPUB、OCR 文件、截图或全书转写稿。能力卡中出现的原文引用仅用于标注方法论出处和保持可审计性。
 
-书中所有数字判据（贴现因子门槛 9/17、囚徒困境的 1/4、拍卖出价折价、锦标赛奖金差、双向拍卖的 1/4 成交门槛等）都是特定函数形式下的模型解——线性需求、均匀分布、风险中性之类的前提一换，数值就不自动平移，原书也未提供统计回测背书。使用时需按自己的场景重算并声明所用假设。本仓库内容不构成投资建议。
+书中所有数字判据（贴现因子门槛、分离信号水平、拍卖出价系数、锦标赛奖金差等）都是教科书算例的推导结果，原书未提供统计回测背书，使用时需按自身场景自行测试并声明所用口径。本仓库内容不构成投资建议。
 
 
 ## License
 
 [MIT](./LICENSE)
-

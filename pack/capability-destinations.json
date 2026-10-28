@@ -1,85 +1,85 @@
 {
   "generated_by": "cangjie-tools v2.5.0",
   "bundle_id": "bundle.gibbons-game-theory",
-  "router_entrypoint": "gibbons-game-theory-router",
+  "router_entrypoint": "game-theory-primer-skill-router",
   "entrypoint_count": 8,
   "capability_count": 19,
   "destinations": {
     "cap.gibbons-game-theory.game-type-classifier": {
       "promoted_to": "game-type-classifier",
-      "router_view": "gibbons-game-theory-router/references/capabilities/game-type-classifier.md"
+      "router_view": "game-theory-primer-skill-router/references/capabilities/game-type-classifier.md"
     },
     "cap.gibbons-game-theory.normal-form-modeling": {
-      "served_by": "gibbons-game-theory-router",
-      "card": "gibbons-game-theory-router/references/capabilities/normal-form-modeling.md"
+      "served_by": "game-theory-primer-skill-router",
+      "card": "game-theory-primer-skill-router/references/capabilities/normal-form-modeling.md"
     },
     "cap.gibbons-game-theory.iesda-procedure": {
-      "served_by": "gibbons-game-theory-router",
-      "card": "gibbons-game-theory-router/references/capabilities/iesda-procedure.md"
+      "served_by": "game-theory-primer-skill-router",
+      "card": "game-theory-primer-skill-router/references/capabilities/iesda-procedure.md"
     },
     "cap.gibbons-game-theory.nash-equilibrium-solver": {
       "promoted_to": "nash-equilibrium-solver",
-      "router_view": "gibbons-game-theory-router/references/capabilities/nash-equilibrium-solver.md"
+      "router_view": "game-theory-primer-skill-router/references/capabilities/nash-equilibrium-solver.md"
     },
     "cap.gibbons-game-theory.mixed-strategy-reinterp": {
-      "served_by": "gibbons-game-theory-router",
-      "card": "gibbons-game-theory-router/references/capabilities/mixed-strategy-reinterp.md"
+      "served_by": "game-theory-primer-skill-router",
+      "card": "game-theory-primer-skill-router/references/capabilities/mixed-strategy-reinterp.md"
     },
     "cap.gibbons-game-theory.backward-induction": {
       "promoted_to": "backward-induction",
-      "router_view": "gibbons-game-theory-router/references/capabilities/backward-induction.md"
+      "router_view": "game-theory-primer-skill-router/references/capabilities/backward-induction.md"
     },
     "cap.gibbons-game-theory.extensive-form-modeling": {
-      "served_by": "gibbons-game-theory-router",
-      "card": "gibbons-game-theory-router/references/capabilities/extensive-form-modeling.md"
+      "served_by": "game-theory-primer-skill-router",
+      "card": "game-theory-primer-skill-router/references/capabilities/extensive-form-modeling.md"
     },
     "cap.gibbons-game-theory.subgame-perfection-check": {
       "promoted_to": "subgame-perfection-check",
-      "router_view": "gibbons-game-theory-router/references/capabilities/subgame-perfection-check.md"
+      "router_view": "game-theory-primer-skill-router/references/capabilities/subgame-perfection-check.md"
     },
     "cap.gibbons-game-theory.commitment-credibility": {
-      "served_by": "gibbons-game-theory-router",
-      "card": "gibbons-game-theory-router/references/capabilities/commitment-credibility.md"
+      "served_by": "game-theory-primer-skill-router",
+      "card": "game-theory-primer-skill-router/references/capabilities/commitment-credibility.md"
     },
     "cap.gibbons-game-theory.repeated-game-cooperation": {
       "promoted_to": "repeated-game-cooperation",
-      "router_view": "gibbons-game-theory-router/references/capabilities/repeated-game-cooperation.md"
+      "router_view": "game-theory-primer-skill-router/references/capabilities/repeated-game-cooperation.md"
     },
     "cap.gibbons-game-theory.incentive-schemes": {
-      "served_by": "gibbons-game-theory-router",
-      "card": "gibbons-game-theory-router/references/capabilities/incentive-schemes.md"
+      "served_by": "game-theory-primer-skill-router",
+      "card": "game-theory-primer-skill-router/references/capabilities/incentive-schemes.md"
     },
     "cap.gibbons-game-theory.bayesian-nash-solver": {
-      "served_by": "gibbons-game-theory-router",
-      "card": "gibbons-game-theory-router/references/capabilities/bayesian-nash-solver.md"
+      "served_by": "game-theory-primer-skill-router",
+      "card": "game-theory-primer-skill-router/references/capabilities/bayesian-nash-solver.md"
     },
     "cap.gibbons-game-theory.double-auction-linear-eq": {
-      "served_by": "gibbons-game-theory-router",
-      "card": "gibbons-game-theory-router/references/capabilities/double-auction-linear-eq.md"
+      "served_by": "game-theory-primer-skill-router",
+      "card": "game-theory-primer-skill-router/references/capabilities/double-auction-linear-eq.md"
     },
     "cap.gibbons-game-theory.revelation-principle": {
-      "served_by": "gibbons-game-theory-router",
-      "card": "gibbons-game-theory-router/references/capabilities/revelation-principle.md"
+      "served_by": "game-theory-primer-skill-router",
+      "card": "game-theory-primer-skill-router/references/capabilities/revelation-principle.md"
     },
     "cap.gibbons-game-theory.pbe-verification": {
       "promoted_to": "pbe-verification",
-      "router_view": "gibbons-game-theory-router/references/capabilities/pbe-verification.md"
+      "router_view": "game-theory-primer-skill-router/references/capabilities/pbe-verification.md"
     },
     "cap.gibbons-game-theory.signaling-equilibrium": {
       "promoted_to": "signaling-equilibrium",
-      "router_view": "gibbons-game-theory-router/references/capabilities/signaling-equilibrium.md"
+      "router_view": "game-theory-primer-skill-router/references/capabilities/signaling-equilibrium.md"
     },
     "cap.gibbons-game-theory.signal-refinement-checklist": {
-      "served_by": "gibbons-game-theory-router",
-      "card": "gibbons-game-theory-router/references/capabilities/signal-refinement-checklist.md"
+      "served_by": "game-theory-primer-skill-router",
+      "card": "game-theory-primer-skill-router/references/capabilities/signal-refinement-checklist.md"
     },
     "cap.gibbons-game-theory.reputation-mechanism": {
-      "served_by": "gibbons-game-theory-router",
-      "card": "gibbons-game-theory-router/references/capabilities/reputation-mechanism.md"
+      "served_by": "game-theory-primer-skill-router",
+      "card": "game-theory-primer-skill-router/references/capabilities/reputation-mechanism.md"
     },
     "cap.gibbons-game-theory.cheap-talk-info-transmission": {
-      "served_by": "gibbons-game-theory-router",
-      "card": "gibbons-game-theory-router/references/capabilities/cheap-talk-info-transmission.md"
+      "served_by": "game-theory-primer-skill-router",
+      "card": "game-theory-primer-skill-router/references/capabilities/cheap-talk-info-transmission.md"
     }
   }
 }

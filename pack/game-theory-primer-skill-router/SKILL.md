@@ -1,5 +1,5 @@
 ---
-name: gibbons-game-theory-router
+name: game-theory-primer-skill-router
 description: |
   吉本斯《博弈论基础》来源路由入口：按任务（建模/求解/动态可信性/重复博弈/不完全信息/信号/声誉/激励/机制设计）把请求路由到19张能力卡；也承担查术语（GLOSSARY 42词条）与定位原书章节（合并转写稿）。
 metadata:

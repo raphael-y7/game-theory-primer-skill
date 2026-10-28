@@ -28,9 +28,9 @@
   },
   "note": "update/重编译前比对 published_hashes；检测到本地手改不得静默覆盖",
   "bundle_id": "bundle.gibbons-game-theory",
-  "bundle_sha256": "2a77aa30538507a883d76b7ac05c7f5e8f5e4c29307f63b38ee88830335f5e90",
+  "bundle_sha256": "e5a08f91b60fd419cf64487d8d1ab09f650c2d64211f5393c951d9cb8d1e4580",
   "variant": "single",
-  "run_id": "run-20261028-112545-fa5422",
+  "run_id": "run-20261028-211535-5a9c27",
   "decision": {
     "schema_version": 1,
     "requested": "single",
