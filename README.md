@@ -137,7 +137,7 @@ game-theory-primer-skill/
 │   └── book/
 │       ├── overview.md            ← 整书概览
 │       └── glossary.md            ← 术语表
-├── single/                        ← 单一入口模式
+├── single/game-theory-primer-skill/            ← 单一入口模式
 │   ├── SKILL.md                   ← 入口：触发条件 + 路由表 + 加载规则
 │   ├── BUILD_MANIFEST.json        ← 编译清单与文件哈希
 │   └── references/
@@ -183,7 +183,7 @@ git clone https://github.com/raphael-y7/game-theory-primer-skill.git
 
 ```bash
 # macOS / Linux
-cp -r game-theory-primer-skill/single ~/.agents/skills/game-theory-primer-skill
+cp -r game-theory-primer-skill/single/game-theory-primer-skill ~/.agents/skills/game-theory-primer-skill
 ```
 
 ```powershell
@@ -236,3 +236,4 @@ $dest = "$env:USERPROFILE\.agents\skills"
 ## License
 
 [MIT](./LICENSE)
+

@@ -137,7 +137,7 @@ game-theory-primer-skill/
 │   └── book/
 │       ├── overview.md            ← whole-book overview
 │       └── glossary.md            ← glossary
-├── single/                        ← single-entry build
+├── single/game-theory-primer-skill/            ← single-entry build
 │   ├── SKILL.md                   ← entry: triggers + routing table + loading rules
 │   ├── BUILD_MANIFEST.json        ← build manifest and file hashes
 │   └── references/
@@ -183,7 +183,7 @@ git clone https://github.com/raphael-y7/game-theory-primer-skill.git
 
 ```bash
 # macOS / Linux
-cp -r game-theory-primer-skill/single ~/.agents/skills/game-theory-primer-skill
+cp -r game-theory-primer-skill/single/game-theory-primer-skill ~/.agents/skills/game-theory-primer-skill
 ```
 
 ```powershell
@@ -236,3 +236,4 @@ All numeric criteria in the book (discount-factor thresholds, separating signal 
 ## License
 
 [MIT](./LICENSE)
+
