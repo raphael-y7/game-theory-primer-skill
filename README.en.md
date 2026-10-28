@@ -240,6 +240,9 @@ This repository publishes distilled skills, indexes and rule quick references on
 
 All numeric criteria in the book (the 9/17 discount-factor threshold, the 1/4 threshold in the prisoner's dilemma, bid shading in auctions, the tournament prize spread, the 1/4 trade band in the double auction, etc.) are model solutions under specific functional forms — change the linear-demand, uniform-distribution or risk-neutral assumptions and the numbers no longer carry over automatically, and the book offers no statistical backtesting. Recompute them for your own setting and declare the assumptions you use. Nothing in this repository is investment advice.
 
+
+This project is released under the MIT license, which permits free use, modification and redistribution, including commercial use. If you intend to use it in a commercial product or a paid service, please contact the author first to describe your use case — this is the author's request, not an additional condition on top of the MIT license.
+
 ## License
 
 [MIT](https://opensource.org/licenses/MIT)
