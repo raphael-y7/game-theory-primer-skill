@@ -231,10 +231,8 @@ Ask: "Will these two oligopolists' price understanding hold, and how do I comput
 
 ## Sources
 
-- *A Primer in Game Theory* by Robert Gibbons, translated by Gao Feng, checked by Wei Yugen
-- Original edition 1992 (Prentice Hall / Harvester Wheatsheaf); Chinese translation March 1999, China Social Sciences Press (Contemporary Economics Textbook Translation Series)
+- *A Primer in Game Theory* by Robert Gibbons
 - Distilled from the whole book, producing 19 capability cards
-- The models and applications in the book come mostly from Western economics literature around 1990 (financial applications of signaling such as Myers-Majluf 1984), and there is not a single A-share case. The investment-scenario mapping in each card's A2 section was added at compile time, and every place where A-share institutional differences matter is marked separately inside the card
 
 ## Notice
 

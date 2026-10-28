@@ -231,10 +231,8 @@ $dest = "$env:USERPROFILE\.agents\skills"
 
 ## 来源
 
-- 《博弈论基础》（A Primer in Game Theory）罗伯特·吉本斯（Robert Gibbons）著，高峰 译，魏玉根 校
-- 原版 1992 年（Prentice Hall / Harvester Wheatsheaf）；中译本 1999 年 3 月，中国社会科学出版社（当代经济学教科书译丛）
+- 《博弈论基础》罗伯特·吉本斯 著
 - 全书蒸馏，共产出 19 张能力卡
-- 书中模型与应用以 1990 年前后的欧美经济学文献为主（信号模型的财务应用如 Myers-Majluf 1984），没有一个 A 股案例；能力卡 A2 段的投资场景映射是编译时补充，涉及 A 股制度差异的地方都在卡内单独标注
 
 ## 声明
 
