@@ -112,82 +112,44 @@ Because this 1992 textbook covers only the four classes of complete/incomplete i
 
 ## Testing and verification
 
-This repository publishes the test material from the generation process alongside the skills: `evals/test-prompts.json` holds the trigger, decoy, routing and boundary cases, and `evals/test-results.md` is the item-by-item scoring report — including the uncovered gaps and a correction note, not just the passes.
+This repository publishes the test material from the generation process alongside the skills: the `test-prompts.json` in each skill directory holds the trigger, decoy, routing and boundary cases, and `test-results.md` at the repository root is the item-by-item scoring report — including the uncovered gaps and a correction note, not just the passes.
 
 - **Trigger blind tests**: 7 promoted cards, 7 / 7, run by a sub-agent in a clean context given only card names and descriptions
 - **Decoy tests**: zero tolerance, 3 / 3 — a pure data lookup activates no card, and a "looks complicated" multi-party scenario still goes to classification rather than to a single-point tool
 - **Routing reachability**: 12 router cards, 12 / 12, every case reached its target card
 - **Output evaluation**: 9 representative tasks (including boundary and missing-input cases), 9 / 9, with each formula checked mechanically; 1 case was a task-design issue, recorded as such and not counted as a card error
-- **Regression set**: the trigger, decoy and routing cases plus the 9 evaluated tasks all became the regression baseline in `evals/test-prompts.json`
+- **Regression set**: the trigger, decoy, routing and boundary cases live in each skill directory's `test-prompts.json`; the nine evaluated tasks are recorded item by item in `test-results.md` (not merged into the JSON)
 - **Not covered**: the 12 router cards were verified by blind-test reachability plus formula checks, not by a full evaluated task each
 
 ## Repository layout
 
 ```text
 game-theory-primer-skill/
-├── README.md                      ← Chinese version
-├── README.en.md                   ← you are reading this
-├── LICENSE                        ← MIT
-├── BOOK_OVERVIEW.md               ← whole-book comprehension (Adler four-step, stage 0 output)
-├── verified.md                    ← triple-verification conclusions for the 19 canonical units
-├── INDEX.md                       ← skill map: capability table + also_read dependencies + load order
-├── TEST_SUMMARY.md                ← stage 4 pressure-test summary: scope, structure checks, results, next steps
-├── CANGJIE_ADAPTATION.md          ← cangjie adaptation notes: text status, distillation goals, evidence rules, boundaries
-├── candidates/                    ← stage 1 candidate pool (14 files, 251 candidates in total)
-│   ├── frameworks.md              ← all framework candidates (56)
-│   ├── frameworks-part-a.md       ← framework candidates, shard A
-│   ├── frameworks-part-b.md       ← framework candidates, shard B
-│   ├── frameworks-part-c.md       ← framework candidates, shard C
-│   ├── principles.md              ← all principle candidates (85)
-│   ├── principles-part-a.md       ← principle candidates, shard A
-│   ├── principles-part-b.md       ← principle candidates, shard B
-│   ├── principles-part-c.md       ← principle candidates, shard C
-│   ├── cases.md                   ← case candidates (42)
-│   ├── counter-examples.md        ← counter-example candidates (26)
-│   ├── glossary.md                ← glossary candidates (42)
-│   ├── verified-frameworks.md     ← item-by-item verification: frameworks
-│   ├── verified-principles.md     ← item-by-item verification: principles (with formula corrections)
-│   └── verified-cases-ce-gloss.md ← item-by-item verification: cases / counter-examples / glossary
-├── bundle/                        ← the canonical bundle before compilation (verified.yaml is the source of truth)
-│   ├── verified.yaml              ← metadata, criteria and destinations for the 19 cards
-│   ├── cards/                     ← 19 capability cards (R/I/A1/A2/E/B structure)
-│   └── book/
-│       ├── overview.md            ← whole-book overview
-│       └── glossary.md            ← glossary
-├── single/game-theory-primer-skill/            ← single-entry build
-│   ├── SKILL.md                   ← entry: triggers + routing table + loading rules
-│   ├── BUILD_MANIFEST.json        ← build manifest and file hashes
-│   ├── test-prompts.json          ← entry copy of the cases, byte-identical to evals/test-prompts.json
-│   └── references/
-│       ├── overview.md            ← whole-book overview
-│       ├── capability-index.md    ← full intent and keyword index
-│       ├── cheatsheet.md          ← decision-rule quick reference
-│       ├── glossary.md            ← glossary
-│       └── capabilities/          ← 19 capability cards
-├── pack/                          ← multi-entry build (compact pack)
-│   ├── BUILD_MANIFEST.json
-│   ├── capability-destinations.json
-│   ├── game-theory-primer-skill-router/
-│   │   ├── SKILL.md               ← source router entry
-│   │   └── references/            ← 19 cards + indexes, called by the router
-│   ├── game-type-classifier/
-│   │   └── SKILL.md
-│   ├── nash-equilibrium-solver/
-│   │   └── SKILL.md
-│   ├── backward-induction/
-│   │   └── SKILL.md
-│   ├── subgame-perfection-check/
-│   │   └── SKILL.md
-│   ├── repeated-game-cooperation/
-│   │   └── SKILL.md
-│   ├── pbe-verification/
-│   │   └── SKILL.md
-│   └── signaling-equilibrium/
-│       └── SKILL.md
-├── (note) ← every skill directory also ships a test-prompts.json (trigger and boundary cases)
-└── evals/                          ← test and scoring material
-    ├── test-prompts.json          ← 24 trigger / decoy / routing / boundary cases
-    └── test-results.md            ← item-by-item scoring and rework log
+├── README.md              ← Chinese version
+├── README.en.md           ← you are reading this
+├── LICENSE                ← MIT
+├── BOOK_OVERVIEW.md       ← stage 0 output: Adler whole-book analysis
+├── INDEX.md               ← stage 3 output: skill map + dependencies
+├── verified.md            ← 19 units that passed triple verification
+├── TEST_SUMMARY.md        ← stage 4 output: stress-test summary
+├── CANGJIE_ADAPTATION.md  ← cangjie adaptation notes
+├── GITHUB_REPO.md         ← repository metadata
+├── test-results.md        ← test result records
+├── candidates/            ← stage 1 output: raw candidate pool
+│   ├── frameworks.md      ← framework and method candidates
+│   ├── principles.md      ← principle / rule / calculation candidates
+│   ├── cases.md           ← case candidates from the book
+│   ├── counter-examples.md← counter-example and boundary candidates
+│   └── glossary.md        ← terminology candidates
+├── rejected/              ← stage 1.5 output: rejected units + reasons
+├── bundle/                ← compilation source of truth
+│   ├── verified.yaml      ← capability metadata, criteria and destinations
+│   ├── cards/             ← capability card sources (six sections)
+│   └── book/              ← overview.md + glossary.md
+├── single/                ← single-mode build (one entry + all capability cards)
+│   └── game-theory-primer-skill/SKILL.md  ← entry: triggers + routing table + loading rules
+└── pack/                  ← pack-mode build (one router + 7 promoted skills)
+    └── */SKILL.md         ← 8 skills, each shipping a test-prompts.json
 ```
 
 ## Usage

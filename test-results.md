@@ -4,7 +4,7 @@
 - 日期：2026-10-28
 - 用例：audit/test-prompts.json（24条：7触发+3诱饵+12路由可达+2边界）
 - 盲测材料：audit/skill-list-for-blindtest.md（仅19卡name+one_liner+description，不给type/expected）
-- 判卷对照：blindtest-A.md（A组触发+诱饵）、blindtest-B.md（B组路由）；实测 output-evals/*.md
+- 判卷对照：blindtest-A.md（A组触发+诱饵）、blindtest-B.md（B组路由）；实测 9 个输出任务文件
 
 ## 一、触发精度（7个promoted卡，独立盲测）
 

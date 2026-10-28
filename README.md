@@ -112,82 +112,44 @@ pack 里被晋级为独立 skill 的 7 张卡：
 
 ## 测试与验证
 
-本仓库把生成过程的测试材料一起发布：`evals/test-prompts.json` 是触发、诱饵、路由与边界用例，`evals/test-results.md` 是逐项评分报告——包含未覆盖项与纠错记录，不是只留通过记录。
+本仓库把生成过程的测试材料一起发布：各 skill 目录下的 `test-prompts.json` 是触发、诱饵、路由与边界用例，仓库根目录的 `test-results.md` 是逐项评分报告——包含未覆盖项与纠错记录，不是只留通过记录。
 
 - **触发盲测**：7 个 promoted 卡独立盲测 7 / 7，sub-agent 干净上下文、只给卡名与描述
 - **诱饵测试**：容错为 0，3 / 3——纯数据查询不激活任何卡，"看似复杂"的多方场景仍先判类而不直接上单点工具
 - **路由可达**：12 个 router 卡 12 / 12，全部命中目标卡
 - **输出实测**：9 个代表任务（含边界与缺输入场景）9 / 9，公式逐项机械核对；其中 1 处为任务设计问题，已在报告中标注，不计为卡内错误
-- **回归集**：触发、诱饵、路由用例与 9 个实测任务全部并入 `evals/test-prompts.json` 作为回归基线
+- **回归集**：触发、诱饵、路由与边界用例已落在各 skill 目录的 `test-prompts.json` 里；9 个实测任务的逐项核对记录在 `test-results.md`（未并入 JSON）
 - **未覆盖**：12 张 router 卡以盲测可达＋公式核对为准，未逐一做完整实测任务
 
 ## 仓库结构
 
 ```text
 game-theory-primer-skill/
-├── README.md                      ← 你正在看的
-├── README.en.md                   ← English version
-├── LICENSE                        ← MIT
-├── BOOK_OVERVIEW.md               ← 整书理解（Adler 四步拆解，阶段 0 产出）
-├── verified.md                    ← 19 个规范单元的三重验证结论
-├── INDEX.md                       ← skill 地图：能力总表 + also_read 依赖 + 加载顺序
-├── TEST_SUMMARY.md                ← 阶段 4 压力测试摘要：测试范围、结构检查、结果、后续动作
-├── CANGJIE_ADAPTATION.md          ← 仓颉适配说明：文本状态、蒸馏目标、证据规则、使用边界
-├── candidates/                    ← 阶段 1 候选池原文（14 个文件，共 251 条候选）
-│   ├── frameworks.md              ← 框架候选全量（56 条）
-│   ├── frameworks-part-a.md       ← 框架候选分片 A
-│   ├── frameworks-part-b.md       ← 框架候选分片 B
-│   ├── frameworks-part-c.md       ← 框架候选分片 C
-│   ├── principles.md              ← 原则候选全量（85 条）
-│   ├── principles-part-a.md       ← 原则候选分片 A
-│   ├── principles-part-b.md       ← 原则候选分片 B
-│   ├── principles-part-c.md       ← 原则候选分片 C
-│   ├── cases.md                   ← 案例候选（42 条）
-│   ├── counter-examples.md        ← 反例候选（26 条）
-│   ├── glossary.md                ← 术语候选（42 条）
-│   ├── verified-frameworks.md     ← 逐条核验：框架
-│   ├── verified-principles.md     ← 逐条核验：原则（含公式修正备注）
-│   └── verified-cases-ce-gloss.md ← 逐条核验：案例 / 反例 / 术语
-├── bundle/                        ← 编译前的规范 Bundle（verified.yaml 是唯一事实源）
-│   ├── verified.yaml              ← 19 张能力卡的元数据、判据与去向
-│   ├── cards/                     ← 19 张能力卡（R/I/A1/A2/E/B 六段结构）
-│   └── book/
-│       ├── overview.md            ← 整书概览
-│       └── glossary.md            ← 术语表
-├── single/game-theory-primer-skill/            ← 单一入口模式
-│   ├── SKILL.md                   ← 入口：触发条件 + 路由表 + 加载规则
-│   ├── BUILD_MANIFEST.json        ← 编译清单与文件哈希
-│   ├── test-prompts.json          ← 入口用例副本，与 evals/test-prompts.json 逐字节相同
-│   └── references/
-│       ├── overview.md            ← 整书概览
-│       ├── capability-index.md    ← 完整意图与关键词索引
-│       ├── cheatsheet.md          ← 决策规则速查
-│       ├── glossary.md            ← 术语表
-│       └── capabilities/          ← 19 张能力卡
-├── pack/                          ← 多入口模式（compact pack）
-│   ├── BUILD_MANIFEST.json
-│   ├── capability-destinations.json
-│   ├── game-theory-primer-skill-router/
-│   │   ├── SKILL.md               ← 来源路由入口
-│   │   └── references/            ← 19 张卡 + 索引，供 router 内部调用
-│   ├── game-type-classifier/
-│   │   └── SKILL.md
-│   ├── nash-equilibrium-solver/
-│   │   └── SKILL.md
-│   ├── backward-induction/
-│   │   └── SKILL.md
-│   ├── subgame-perfection-check/
-│   │   └── SKILL.md
-│   ├── repeated-game-cooperation/
-│   │   └── SKILL.md
-│   ├── pbe-verification/
-│   │   └── SKILL.md
-│   └── signaling-equilibrium/
-│       └── SKILL.md
-├── （注）← 各 skill 目录均含 test-prompts.json（该能力的触发与边界用例）
-└── evals/                          ← 测试与评分材料
-    ├── test-prompts.json          ← 24 条触发 / 诱饵 / 路由 / 边界用例
-    └── test-results.md            ← 逐项评分与失败修复记录
+├── README.md              ← 你正在看的
+├── README.en.md           ← English version
+├── LICENSE                ← MIT
+├── BOOK_OVERVIEW.md       ← 阶段 0 产出：全书 Adler 分析
+├── INDEX.md               ← 阶段 3 产出：skill 总览 + 依赖关系
+├── verified.md            ← 通过三重验证的 19 个单元
+├── TEST_SUMMARY.md        ← 阶段 4 产出：压力测试摘要
+├── CANGJIE_ADAPTATION.md  ← 仓颉适配说明
+├── GITHUB_REPO.md         ← 仓库元数据
+├── test-results.md        ← 测试结果记录
+├── candidates/            ← 阶段 1 产出：原始候选池
+│   ├── frameworks.md      ← 框架与方法候选
+│   ├── principles.md      ← 原则 / 规则 / 计算候选
+│   ├── cases.md           ← 书中案例候选
+│   ├── counter-examples.md← 反例与边界候选
+│   └── glossary.md        ← 术语候选
+├── rejected/              ← 阶段 1.5 产出：被淘汰的单元 + 原因
+├── bundle/                ← 编译事实源
+│   ├── verified.yaml      ← 能力元数据、判据与去向
+│   ├── cards/             ← 能力卡源文件（六段结构）
+│   └── book/              ← overview.md + glossary.md
+├── single/                ← single 模式（1 个入口 + 全部能力卡）
+│   └── game-theory-primer-skill/SKILL.md  ← 入口：触发 + 路由表 + 加载规则
+└── pack/                  ← pack 模式（1 个路由入口 + 7 个晋级 skill）
+    └── */SKILL.md         ← 8 个 skill，每个附带 test-prompts.json
 ```
 
 ## 如何使用
